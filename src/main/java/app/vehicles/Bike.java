@@ -1,0 +1,9 @@
+package app.vehicles;
+
+public interface Bike extends Vehicle {
+    public boolean isRentable();
+    public void setState(BikeState state);
+    public BikeState getState();
+    public void setLives(int livesCount);
+    public int getLives();
+}

@@ -1,0 +1,9 @@
+/home/francois/foutoir/coo/src/test/java/app/stations/spaces/BikeParkingSpaceTest.java
+/home/francois/foutoir/coo/src/test/java/app/vehicles/BikeDecoratorTest.java
+/home/francois/foutoir/coo/src/test/java/app/mocks/MockBike.java
+/home/francois/foutoir/coo/src/test/java/app/vehicles/VehicleDecoratorTest.java
+/home/francois/foutoir/coo/src/test/java/app/vehicles/BikeTest.java
+/home/francois/foutoir/coo/src/test/java/app/mocks/MockDecoratorComponent.java
+/home/francois/foutoir/coo/src/test/java/app/mocks/MockParkingSpace.java
+/home/francois/foutoir/coo/src/test/java/app/stations/spaces/ParkingSpaceTest.java
+/home/francois/foutoir/coo/src/test/java/app/mocks/MockVehicle.java
