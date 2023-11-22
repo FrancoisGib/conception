@@ -3,12 +3,12 @@
         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>app</groupId>
+    <groupId>coo</groupId>
     <artifactId>coo</artifactId>
     <packaging>jar</packaging>
     <version>1.0</version>
 
-    <name>COO</name>
+    <name>coo</name>
 
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
@@ -45,7 +45,7 @@
                 <configuration>
                 <archive>
                     <manifest>
-                    <mainClass>app.App</mainClass>
+                    <mainClass>app.Main</mainClass>
                     </manifest>
                 </archive>
                 </configuration>
@@ -55,7 +55,7 @@
                 <artifactId>exec-maven-plugin</artifactId>
                 <version>1.6.0</version>
                 <configuration>
-                <mainClass>app.App</mainClass>
+                <mainClass>app.Main</mainClass>
                 </configuration>
             </plugin>
             <plugin>

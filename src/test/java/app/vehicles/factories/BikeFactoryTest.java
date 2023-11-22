@@ -1,5 +1,10 @@
 package app.vehicles.factories;
 
-public class BikeFactoryTest {
+import org.junit.jupiter.api.BeforeEach;
 
+public class BikeFactoryTest extends VehicleFactoryTest {
+    @BeforeEach
+    public void init() {
+        this.factory = new BikeFactory();
+    }
 }

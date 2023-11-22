@@ -22,13 +22,9 @@ public class MockParkingSpace extends ParkingSpace {
     }
 
     @Override
-    public Vehicle remove() {
-        try {
-            Vehicle vehicle = super.remove();
-            this.cpt++;
-            return vehicle;
-        }
-        catch(SpaceEmptyException e) {}
-        return null;
+    public Vehicle remove() throws SpaceEmptyException {
+        Vehicle vehicle = super.remove();
+        this.cpt++;
+        return vehicle;
     }
 }

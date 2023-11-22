@@ -8,6 +8,7 @@ import app.redistributions.Redistribution;
 import app.redistributions.RoundRobin;
 import app.stations.RentalStation;
 import app.vehicles.Vehicle;
+import lombok.Getter;
 
 public class ControlCenter implements Observer, Timer {
     protected List<RentalStation> stations;
@@ -16,6 +17,7 @@ public class ControlCenter implements Observer, Timer {
 
     protected Displayer displayer = new Displayer();
 
+    @Getter
     protected int redistributionCounter = 0;
 
     protected static final int TICK_BEFORE_REDISTRIBUTION = 5;

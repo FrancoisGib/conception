@@ -43,7 +43,8 @@ public class RentalStation implements Subject {
                 this.observer.vehicleStored(vehicle, this);
             }
         }
-        throw new StationFullException();
+        if (!found)
+            throw new StationFullException();
     }
 
     public Vehicle rentVehicle() throws StationEmptyException, SpaceEmptyException {
