@@ -12,4 +12,8 @@ public class MockVehicle implements Vehicle {
     public String getDescription() {
         return DESCRIPTION;
     }
+
+    public boolean isRentable() {
+        return true;
+    }
 }

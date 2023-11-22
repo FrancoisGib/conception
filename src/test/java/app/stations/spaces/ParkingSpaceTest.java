@@ -8,18 +8,17 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import app.mocks.MockParkingSpace;
 import app.mocks.MockVehicle;
 import app.vehicles.Vehicle;
 
-public abstract class ParkingSpaceTest<V extends Vehicle> {
+public class ParkingSpaceTest {
     Vehicle vehicle;
-    ParkingSpace<Vehicle> space;
+    ParkingSpace space;
 
     @BeforeEach
     public void init() {
         this.vehicle = new MockVehicle();
-        this.space = new MockParkingSpace();
+        this.space = new ParkingSpace();
     }
 
     @Test

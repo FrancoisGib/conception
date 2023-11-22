@@ -1,9 +1,8 @@
 package app.mocks;
 
-import app.vehicles.Vehicle;
 import app.vehicles.utilities.VehicleDecorator;
 
-public class MockDecoratorComponent extends VehicleDecorator<Vehicle> {
+public class MockDecoratorComponent extends VehicleDecorator {
     public static final String DESCRIPTION = " / Decorator";
 
     public MockDecoratorComponent() {

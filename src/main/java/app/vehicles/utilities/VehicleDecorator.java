@@ -3,13 +3,13 @@ package app.vehicles.utilities;
 import app.vehicles.Vehicle;
 import lombok.Getter;
 
-public abstract class VehicleDecorator<V extends Vehicle> implements Vehicle {
-    protected V vehicle;
+public abstract class VehicleDecorator implements Vehicle {
+    protected Vehicle vehicle;
 
     @Getter
     protected int id;
 
-    public VehicleDecorator(V vehicle) {
+    public VehicleDecorator(Vehicle vehicle) {
         super();
         this.vehicle = vehicle;
     }
@@ -17,5 +17,10 @@ public abstract class VehicleDecorator<V extends Vehicle> implements Vehicle {
     @Override
     public String getDescription() {
         return vehicle.getDescription();
+    }
+
+    @Override
+    public boolean isRentable() {
+        return this.vehicle.isRentable();
     }
 }

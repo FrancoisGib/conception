@@ -4,25 +4,24 @@ import java.util.Iterator;
 import java.util.List;
 
 import app.Timer;
-import app.displayers.ClassicDisplayer;
 import app.displayers.Displayer;
 import app.redistributions.Redistribution;
 import app.redistributions.RoundRobin;
 import app.stations.RentalStation;
 import app.vehicles.Vehicle;
 
-public class ControlCenter<V extends Vehicle> implements Observer<V>, Timer {
-    protected List<RentalStation<V>> stations;
+public class ControlCenter implements Observer, Timer {
+    protected List<RentalStation> stations;
 
-    protected Redistribution<V> redistribution = new RoundRobin<>();
+    protected Redistribution redistribution = new RoundRobin();
 
-    protected Displayer<V> displayer = new ClassicDisplayer<>();
+    protected Displayer displayer = new Displayer();
 
     protected int redistributionCounter = 0;
 
     protected static final int TICK_BEFORE_REDISTRIBUTION = 2;
 
-    public ControlCenter(List<RentalStation<V>> stations) {
+    public ControlCenter(List<RentalStation> stations) {
         this.stations = stations;
         stations.forEach((station) -> station.attach(this));
     }
@@ -37,17 +36,17 @@ public class ControlCenter<V extends Vehicle> implements Observer<V>, Timer {
         this.displayer.displayStations(stations);
     }
 
-    public void vehicleRented(V vehicle, RentalStation<V> station) {
+    public void vehicleRented(Vehicle vehicle, RentalStation station) {
         this.displayer.vehicleRented(vehicle, station);
     }
 
-    public void vehicleStored(V vehicle, RentalStation<V> station) {
+    public void vehicleStored(Vehicle vehicle, RentalStation station) {
         this.displayer.vehicleStored(vehicle, station);
     }
 
     public void tick() {
         boolean found = false;
-        Iterator<RentalStation<V>> iterator = this.stations.iterator();
+        Iterator<RentalStation> iterator = this.stations.iterator();
         while(!found && iterator.hasNext()) {
             if (iterator.next().isEmpty()) {
                 found = true;

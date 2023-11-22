@@ -11,7 +11,7 @@ import app.stations.spaces.SpaceOccupiedException;
 import app.vehicles.Vehicle;
 import lombok.Getter;
 
-public class RentalStation<V extends Vehicle> implements Subject<V> {
+public class RentalStation implements Subject {
     public static final int MAX_CAPACITY = 20;
     public static final int MIN_CAPACITY = 10;
 
@@ -19,24 +19,24 @@ public class RentalStation<V extends Vehicle> implements Subject<V> {
     protected int id;
 
     @Getter
-    protected List<ParkingSpace<V>> spaces = new ArrayList<>();
+    protected List<ParkingSpace> spaces = new ArrayList<>();
 
-    protected Observer<V> observer;
+    protected Observer observer;
 
     @Getter
     protected int capacity;
 
-    public RentalStation(int id, List<ParkingSpace<V>> spaces) {
+    public RentalStation(int id, List<ParkingSpace> spaces) {
         this.spaces = spaces;
         this.id = id;
         this.capacity = spaces.size();
     }
 
-    public void storeVehicle(V vehicle) throws StationFullException, SpaceOccupiedException {
-        Iterator<ParkingSpace<V>> iterator = this.spaces.iterator();
+    public void storeVehicle(Vehicle vehicle) throws StationFullException, SpaceOccupiedException {
+        Iterator<ParkingSpace> iterator = this.spaces.iterator();
         boolean found = false;
         while (!found && iterator.hasNext()) {
-            ParkingSpace<V> space = iterator.next();
+            ParkingSpace space = iterator.next();
             if (!space.isOccupied()) {
                 space.store(vehicle);
                 found = true;
@@ -46,10 +46,10 @@ public class RentalStation<V extends Vehicle> implements Subject<V> {
         throw new StationFullException();
     }
 
-    public V rentVehicle() throws StationEmptyException, SpaceEmptyException {
-        for (ParkingSpace<V> space : this.spaces) {
+    public Vehicle rentVehicle() throws StationEmptyException, SpaceEmptyException {
+        for (ParkingSpace space : this.spaces) {
             if (space.isOccupied()) {
-                V vehicle = space.remove();
+                Vehicle vehicle = space.remove();
                 this.observer.vehicleRented(vehicle, this);
                 return vehicle;
             }
@@ -58,14 +58,14 @@ public class RentalStation<V extends Vehicle> implements Subject<V> {
     }
 
     public boolean isEmpty() {
-        for (ParkingSpace<V> space : this.spaces) {
+        for (ParkingSpace space : this.spaces) {
             if (space.isOccupied())
                 return false;
         }
         return true;
     }
 
-    public void attach(Observer<V> observer) {
+    public void attach(Observer observer) {
         this.observer = observer;
     }
 }

@@ -4,14 +4,14 @@ import lombok.Getter;
 import app.stations.RentalStation;
 import app.vehicles.Vehicle;
 
-public class Client<V extends Vehicle> implements Timer {
-    private V vehicle = null;
+public class Client implements Timer {
+    private Vehicle vehicle = null;
 
     private int rentCounter = 0;
 
     private int maxRentCounter;
 
-    private RentalStation<V> station;
+    private RentalStation station;
 
     @Getter
     private int id;
@@ -20,7 +20,7 @@ public class Client<V extends Vehicle> implements Timer {
         this.id = id;
     }
 
-    public void rentVehicle(RentalStation<V> station) {
+    public void rentVehicle(RentalStation station) {
         if (this.vehicle == null) {
             this.station = station;
             try {

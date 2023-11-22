@@ -5,7 +5,7 @@ import app.vehicles.BikeState;
 import lombok.Getter;
 import lombok.Setter;
 
-public abstract class BikeDecorator extends VehicleDecorator<Bike> implements Bike {
+public abstract class BikeDecorator extends VehicleDecorator implements Bike {
     @Getter @Setter
     protected BikeState state;
 
@@ -15,9 +15,5 @@ public abstract class BikeDecorator extends VehicleDecorator<Bike> implements Bi
     public BikeDecorator(Bike bike) {
         super(bike);
         this.vehicle = bike;
-    }
-
-    public boolean isRentable() {
-        return this.vehicle.isRentable();
     }
 }

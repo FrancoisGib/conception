@@ -3,20 +3,20 @@ package app.stations.spaces;
 import app.vehicles.Vehicle;
 import lombok.Getter;
 
-public class ParkingSpace<V extends Vehicle> {
+public class ParkingSpace {
     @Getter
-    V vehicle;
+    Vehicle vehicle;
 
-    public void store(V vehicle) throws SpaceOccupiedException {
+    public void store(Vehicle vehicle) throws SpaceOccupiedException {
         if (this.vehicle != null)
             throw new SpaceOccupiedException();
         this.vehicle = vehicle;
     }
 
-    public V remove() throws SpaceEmptyException {
+    public Vehicle remove() throws SpaceEmptyException {
         if (this.vehicle == null)
             throw new SpaceEmptyException();
-        V vehicle = this.vehicle;
+        Vehicle vehicle = this.vehicle;
         this.vehicle = null;
         return vehicle;
     }

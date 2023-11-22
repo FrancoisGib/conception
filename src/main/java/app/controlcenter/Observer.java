@@ -3,7 +3,7 @@ package app.controlcenter;
 import app.stations.RentalStation;
 import app.vehicles.Vehicle;
 
-public interface Observer<V extends Vehicle> {
-    public void vehicleRented(V vehicle, RentalStation<V> station);
-    public void vehicleStored(V vehicle, RentalStation<V> station);
+public interface Observer {
+    public void vehicleRented(Vehicle vehicle, RentalStation station);
+    public void vehicleStored(Vehicle vehicle, RentalStation station);
 }
