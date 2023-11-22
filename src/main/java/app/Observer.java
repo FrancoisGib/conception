@@ -1,4 +1,4 @@
-package app.controlcenter;
+package app;
 
 import app.stations.RentalStation;
 import app.vehicles.Vehicle;

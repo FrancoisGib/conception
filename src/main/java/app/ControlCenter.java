@@ -1,9 +1,8 @@
-package app.controlcenter;
+package app;
 
 import java.util.Iterator;
 import java.util.List;
 
-import app.Timer;
 import app.displayers.Displayer;
 import app.redistributions.Redistribution;
 import app.redistributions.RoundRobin;
@@ -19,7 +18,7 @@ public class ControlCenter implements Observer, Timer {
 
     protected int redistributionCounter = 0;
 
-    protected static final int TICK_BEFORE_REDISTRIBUTION = 2;
+    protected static final int TICK_BEFORE_REDISTRIBUTION = 5;
 
     public ControlCenter(List<RentalStation> stations) {
         this.stations = stations;
@@ -50,14 +49,12 @@ public class ControlCenter implements Observer, Timer {
         while(!found && iterator.hasNext()) {
             if (iterator.next().isEmpty()) {
                 found = true;
-                this.redistributionCounter++;
             }
         }
+        this.redistributionCounter = found ? this.redistributionCounter++ : 0;
         if (this.redistributionCounter == TICK_BEFORE_REDISTRIBUTION) {
-            this.displayer.displayStations(stations);
             this.redistribution.redistribute(this.stations);
             this.redistributionCounter = 0;
-            this.displayer.displayStations(stations);
         }
         
     }

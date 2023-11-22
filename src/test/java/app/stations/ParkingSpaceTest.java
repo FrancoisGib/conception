@@ -1,4 +1,4 @@
-package app.stations.spaces;
+package app.stations;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertSame;
@@ -9,6 +9,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import app.mocks.MockVehicle;
+import app.stations.spaces.ParkingSpace;
+import app.stations.spaces.SpaceEmptyException;
+import app.stations.spaces.SpaceOccupiedException;
 import app.vehicles.Vehicle;
 
 public class ParkingSpaceTest {

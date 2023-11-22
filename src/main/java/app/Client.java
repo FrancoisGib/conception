@@ -21,16 +21,13 @@ public class Client implements Timer {
     }
 
     public void rentVehicle(RentalStation station) {
-        if (this.vehicle == null) {
-            this.station = station;
-            try {
-                this.vehicle = this.station.rentVehicle();
-                this.maxRentCounter = (int) (Math.random() * Simulation.CLIENT_MAX_RENT_LOOP);
-            } catch (Exception e) {
-                System.out.println("Empty station " + this.station.getId() + " : come back later !");
-            }
-        } else
-            System.out.println("You're already renting a vehicle");
+    this.station = station;
+        try {
+            this.vehicle = this.station.rentVehicle();
+            this.maxRentCounter = (int) (Math.random() * Simulation.CLIENT_MAX_RENT_LOOP);
+        } catch (Exception e) {
+            System.out.println("Empty station " + this.station.getId() + " : come back later !");
+        }
     }
 
     public void storeVehicle() {

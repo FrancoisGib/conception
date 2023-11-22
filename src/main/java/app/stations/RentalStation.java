@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import app.controlcenter.Observer;
+import app.Observer;
 import app.stations.spaces.ParkingSpace;
 import app.stations.spaces.SpaceEmptyException;
 import app.stations.spaces.SpaceOccupiedException;
