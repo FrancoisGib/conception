@@ -1,8 +1,8 @@
-package app.vehicles;
+package app.vehicles.bikes;
+
+import app.vehicles.Vehicle;
 
 public interface Bike extends Vehicle {
     public void setState(BikeState state);
     public BikeState getState();
-    public void setLives(int livesCount);
-    public int getLives();
 }

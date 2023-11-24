@@ -16,9 +16,9 @@ public class ParkingSpace {
     public Vehicle remove() throws SpaceEmptyException {
         if (this.vehicle == null)
             throw new SpaceEmptyException();
-        Vehicle vehicle = this.vehicle;
+        Vehicle currentVehicle = this.vehicle;
         this.vehicle = null;
-        return vehicle;
+        return currentVehicle;
     }
 
     public boolean isOccupied() {

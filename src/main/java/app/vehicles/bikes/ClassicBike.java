@@ -1,29 +1,21 @@
-package app.vehicles;
+package app.vehicles.bikes;
 
+import app.vehicles.ClassicVehicle;
 import lombok.Getter;
 import lombok.Setter;
 
-public class ClassicBike implements Bike {
+public class ClassicBike extends ClassicVehicle implements Bike {
     public static final String DESCRIPTION = "Bike";
 
     public static final int INITIAL_LIVES = 10;
 
     @Getter @Setter
-    protected BikeState state;
-
-    @Getter @Setter
-    protected int lives;
-
-    @Getter
-    protected int id;
+    public BikeState state;
 
     public ClassicBike(int id) {
-        this.id = id;
+        super(id);
         this.lives = INITIAL_LIVES;
-    }
-
-    public String getDescription() {
-        return DESCRIPTION;
+        this.description = DESCRIPTION;
     }
 
     public boolean isRentable() {

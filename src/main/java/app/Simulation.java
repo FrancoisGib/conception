@@ -10,6 +10,7 @@ import app.stations.factories.BikeStationFactory;
 import app.stations.factories.StationFactory;
 
 public class Simulation {
+    private static final int SIMULATION_TIME = 10;
 
     public static final int CLIENT_MAX_RENT_LOOP = 60;
 
@@ -23,10 +24,12 @@ public class Simulation {
 
     protected ArrayList<Client> clients = new ArrayList<>();
 
+    private int loop = 0;
+
     public Simulation(int nbStations) {
         for (int i = 0; i < 50; i++)
             this.clients.add(new Client(i));
-        List<RentalStation> stations = new ArrayList<>();
+        this.stations = new ArrayList<>();
         StationFactory stationFactory = new BikeStationFactory();
         for (int i = 0; i < nbStations; i++)
             stations.add(stationFactory.createStation(i));
@@ -34,27 +37,32 @@ public class Simulation {
     }
 
     public void start() {
-        new Timer().schedule(new TimerTask() {
+        Timer t = new Timer();
+        t.schedule(new TimerTask() {
             @Override
             public void run() {
-                int loop = 0;
                 if (loop % LOOP_RENT == 0) {
                     int i = 0;
                     while (i < clients.size()) {
                         Client client = clients.get(i);
                         if (!client.hasVehicle()) {
-                            client.rentVehicle(stations.get((int) (Math.random() * stations.size())));
+                            RentalStation station = stations.get((int) (Math.random() * stations.size()));
+                            client.rentVehicle(station);
                         }
                         i++;
                     }
                 }
-                loop++;
                 loop();
+                if (loop >= SIMULATION_TIME) {
+                    System.out.println("End of simulation");
+                    t.cancel();
+                }
             }
         }, 1000 * LOOP_TIME, 1000 * LOOP_TIME);
     }
 
     public void loop() {
+        this.loop++;
         for (Client client : clients) {
             client.tick();
         }

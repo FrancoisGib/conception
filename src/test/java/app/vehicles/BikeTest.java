@@ -6,41 +6,47 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class BikeTest {
-    Bike bike;
+import app.vehicles.bikes.Bike;
+import app.vehicles.bikes.BikeState;
+import app.vehicles.bikes.ClassicBike;
+
+public class BikeTest extends VehicleTest {
+    private Bike vehicle;
 
     @BeforeEach
     public void init() {
-        this.bike = new ClassicBike(0);
+        super.init();
+        this.vehicle = new ClassicBike(0);
+        this.vehicle.setState(BikeState.RENTED);
     }
 
     @Test
     public void cannotBeRentedBecauseAlreadyRented() {
-        bike.setState(BikeState.RENTED);
-        assertFalse(bike.isRentable());
+        vehicle.setState(BikeState.RENTED);
+        assertFalse(vehicle.isRentable());
     }
 
     @Test
     public void cannotBeRentedBecauseStollen() {
-        bike.setState(BikeState.STOLLEN);
-        assertFalse(bike.isRentable());
+        vehicle.setState(BikeState.STOLLEN);
+        assertFalse(vehicle.isRentable());
     }
 
     @Test
     public void cannotBeRentedBecauseInReparation() {
-        bike.setState(BikeState.REPARATION);
-        assertFalse(bike.isRentable());
+        vehicle.setState(BikeState.REPARATION);
+        assertFalse(vehicle.isRentable());
     }
 
     @Test
     public void cannotBeRentedBecauseOutOfService() {
-        bike.setState(BikeState.OUT_OF_SERVICE);
-        assertFalse(bike.isRentable());
+        vehicle.setState(BikeState.OUT_OF_SERVICE);
+        assertFalse(vehicle.isRentable());
     }
 
     @Test
     public void canBeRented() {
-        bike.setState(BikeState.STORED);
-        assertTrue(bike.isRentable());
+        vehicle.setState(BikeState.STORED);
+        assertTrue(vehicle.isRentable());
     }
 }

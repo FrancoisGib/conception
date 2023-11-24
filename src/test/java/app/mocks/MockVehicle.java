@@ -1,19 +1,12 @@
 package app.mocks;
 
-import app.vehicles.Vehicle;
+import app.vehicles.ClassicVehicle;
 
-public class MockVehicle implements Vehicle {
+public class MockVehicle extends ClassicVehicle {
     public static final String DESCRIPTION = "Vehicle";
 
-    public int getId() {
-        return 0;
-    }
-
-    public String getDescription() {
-        return DESCRIPTION;
-    }
-
-    public boolean isRentable() {
-        return true;
+    public MockVehicle() {
+        super(0);
+        this.description = "Vehicle";
     }
 }

@@ -1,15 +1,12 @@
-package app.vehicles.utilities;
+package app.vehicles.bikes.utilities;
 
-import app.vehicles.Bike;
+import app.vehicles.bikes.Bike;
 
 public class Backpack extends BikeDecorator {
     public static final String DESCRIPTION = " / Backpack";
     
     public Backpack(Bike bike) {
         super(bike);
-    }
-
-    public String getDescription() {
-        return super.getDescription() + DESCRIPTION;
+        this.description = DESCRIPTION;
     }
 }

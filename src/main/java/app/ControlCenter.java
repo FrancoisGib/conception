@@ -57,7 +57,6 @@ public class ControlCenter implements Observer, Timer {
         if (this.redistributionCounter == TICK_BEFORE_REDISTRIBUTION) {
             this.redistribution.redistribute(this.stations);
             this.redistributionCounter = 0;
-        }
-        
+        }   
     }
 }

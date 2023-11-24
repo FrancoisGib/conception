@@ -9,26 +9,29 @@ import org.junit.jupiter.api.Test;
 
 import app.mocks.MockDecoratorComponent;
 import app.mocks.MockVehicle;
-import app.vehicles.utilities.VehicleDecorator;
 
 public abstract class VehicleDecoratorTest {
-    Vehicle vehicle;
+
+    protected Vehicle vehicle;
+
+    protected String basicDescription;
 
     @BeforeEach
     public void init() {
         this.vehicle = new MockVehicle();
+        this.basicDescription = MockVehicle.DESCRIPTION;
     }
 
     @Test
     public void isNotDecoratedInstanceAndDescriptionCheck() {
         assertFalse(vehicle instanceof VehicleDecorator);
-        assertEquals(vehicle.getDescription(), vehicle.getDescription());
+        assertEquals(basicDescription, vehicle.getDescription());
     }
 
     @Test
     public void isDecoratedInstanceAndDescriptionCheck() {
-        vehicle = new MockDecoratorComponent();
+        vehicle = new MockDecoratorComponent(this.vehicle);
         assertInstanceOf(VehicleDecorator.class, vehicle);
-        assertEquals(vehicle.getDescription(), vehicle.getDescription());
+        assertEquals(basicDescription + MockDecoratorComponent.DESCRIPTION, vehicle.getDescription());
     }
 }

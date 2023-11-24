@@ -1,6 +1,6 @@
 package app.mocks;
 
-import app.vehicles.ClassicBike;
+import app.vehicles.bikes.ClassicBike;
 
 public class MockBike extends ClassicBike {
     public MockBike() {
