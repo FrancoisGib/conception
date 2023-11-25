@@ -1,13 +1,13 @@
 package app.mocks;
 
 import app.persons.visitors.Visitor;
-import app.vehicles.bikes.ClassicBike;
+import app.vehicles.scooters.ClassicScooter;
 
-public class MockBike extends ClassicBike {
+public class MockScooter extends ClassicScooter {
     public boolean acceptCalled = false;
     public boolean setLivesCalled = false;
 
-    public MockBike() {
+    public MockScooter() {
         super(0);
     }
 

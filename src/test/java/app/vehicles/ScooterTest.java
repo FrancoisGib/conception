@@ -2,16 +2,15 @@ package app.vehicles;
 
 import org.junit.jupiter.api.BeforeEach;
 
-import app.mocks.MockBike;
+import app.mocks.MockScooter;
 
-public class BikeTest extends VehicleTest {
-    MockBike vehicle;
+public class ScooterTest extends VehicleTest {
+    MockScooter vehicle;
 
     @BeforeEach
     public void init() {
         super.init();
-        this.vehicle = new MockBike();
-        this.vehicle.setState(State.RENTED);
+        this.vehicle = new MockScooter();
     }
 
     /*@Test

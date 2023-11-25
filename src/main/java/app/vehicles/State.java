@@ -1,5 +1,5 @@
-package app.vehicles.bikes;
+package app.vehicles;
 
-public enum BikeState {
+public enum State {
     RENTED, STORED, STOLLEN, REPARATION, OUT_OF_SERVICE
 }

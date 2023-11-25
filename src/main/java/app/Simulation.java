@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import app.persons.Client;
 import app.stations.RentalStation;
 import app.stations.factories.BikeStationFactory;
 import app.stations.factories.StationFactory;
@@ -12,7 +13,7 @@ import app.stations.factories.StationFactory;
 public class Simulation {
     private static final int SIMULATION_TIME = 10;
 
-    public static final int CLIENT_MAX_RENT_LOOP = 60;
+    public static final int CLIENT_MAX_RENT_LOOP = 10;
 
     public static final int LOOP_RENT = 1;
 
@@ -37,8 +38,8 @@ public class Simulation {
     }
 
     public void start() {
-        Timer t = new Timer();
-        t.schedule(new TimerTask() {
+        Timer timer = new Timer();
+        timer.schedule(new TimerTask() {
             @Override
             public void run() {
                 if (loop % LOOP_RENT == 0) {
@@ -55,7 +56,7 @@ public class Simulation {
                 loop();
                 if (loop >= SIMULATION_TIME) {
                     System.out.println("End of simulation");
-                    t.cancel();
+                    timer.cancel();
                 }
             }
         }, 1000 * LOOP_TIME, 1000 * LOOP_TIME);

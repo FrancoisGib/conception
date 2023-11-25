@@ -6,38 +6,51 @@ import static org.junit.jupiter.api.Assertions.assertInstanceOf;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import app.mocks.MockBikeDecorator;
 import app.vehicles.bikes.Bike;
 import app.vehicles.bikes.ClassicBike;
 import app.vehicles.bikes.utilities.Backpack;
+import app.vehicles.bikes.utilities.BikeDecorator;
 import app.vehicles.bikes.utilities.LuggageRack;
 
-public class BikeDecoratorTest extends VehicleDecoratorTest {
+public class BikeDecoratorTest extends DecoratorTest {
+    protected static final String SEPARATOR = " / ";
 
-    @Override
+    Bike vehicle;
+
+    String baseDescription;
+
+    int initialLives;
+
+    BikeDecorator decorator;
+
     @BeforeEach
     public void init() {
+        super.init();
         this.vehicle = new ClassicBike(0);
-        this.basicDescription = ClassicBike.DESCRIPTION;
+        this.baseDescription = Bike.DESCRIPTION;
+        this.initialLives = Bike.INITIAL_LIVES;
+        this.decorator = new MockBikeDecorator();
     }
 
     @Test
     public void isDecoratedWithBackpack() {
-        Bike bike = new Backpack(new ClassicBike(0));
-        assertInstanceOf(Backpack.class, bike);
-        assertEquals(basicDescription + Backpack.DESCRIPTION, bike.getDescription());
+        vehicle = new Backpack(vehicle);
+        assertInstanceOf(Backpack.class, vehicle);
+        assertEquals(baseDescription + SEPARATOR + Backpack.DESCRIPTION, vehicle.getDescription());
     }
 
     @Test
     public void isDecoratedWithLuggageRack() {
-        Bike bike = new LuggageRack(new ClassicBike(0));
-        assertInstanceOf(LuggageRack.class, bike);
-        assertEquals(basicDescription + LuggageRack.DESCRIPTION, bike.getDescription());
+        vehicle = new LuggageRack(vehicle);
+        assertInstanceOf(LuggageRack.class, vehicle);
+        assertEquals(baseDescription + SEPARATOR + LuggageRack.DESCRIPTION, vehicle.getDescription());
     }
 
     @Test
     public void isDecoratedWithBackpackAndLuggageRack() {
-        Bike bike = new LuggageRack(new Backpack(new ClassicBike(0)));
-        assertInstanceOf(LuggageRack.class, bike);
-        assertEquals(basicDescription + Backpack.DESCRIPTION + LuggageRack.DESCRIPTION, bike.getDescription());
+        vehicle = new LuggageRack(new Backpack(vehicle));
+        assertInstanceOf(LuggageRack.class, vehicle);
+        assertEquals(baseDescription + SEPARATOR + Backpack.DESCRIPTION + SEPARATOR + LuggageRack.DESCRIPTION, vehicle.getDescription());
     }
 }

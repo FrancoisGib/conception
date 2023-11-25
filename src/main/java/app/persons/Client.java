@@ -1,19 +1,21 @@
-package app;
+package app.persons;
 
 import lombok.Getter;
+import app.Simulation;
+import app.Timer;
 import app.stations.RentalStation;
 import app.stations.StationEmptyException;
 import app.stations.spaces.SpaceEmptyException;
 import app.vehicles.Vehicle;
 
 public class Client implements Timer {
-    private Vehicle vehicle;
+    protected Vehicle vehicle;
 
-    private int rentCounter = 0;
+    protected int rentCounter = 0;
 
-    private int maxRentCounter;
+    protected int maxRentCounter = (int) (Math.random() * Simulation.CLIENT_MAX_RENT_LOOP);
 
-    private RentalStation station;
+    protected RentalStation station;
 
     @Getter
     private int id;
@@ -25,8 +27,7 @@ public class Client implements Timer {
     public void rentVehicle(RentalStation station) {
         this.station = station;
         try {
-            this.vehicle = station.rentVehicle();
-            this.maxRentCounter = (int) (Math.random() * Simulation.CLIENT_MAX_RENT_LOOP);
+            this.vehicle = station.rentVehicle(this);
         } catch (StationEmptyException e) {
             System.out.println("Empty station " + this.station.getId() + " : come back later !");
         }
