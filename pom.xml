@@ -3,12 +3,12 @@
         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>coo</groupId>
-    <artifactId>coo</artifactId>
+    <groupId>COO</groupId>
+    <artifactId>COO</artifactId>
     <packaging>jar</packaging>
     <version>1.0</version>
 
-    <name>coo</name>
+    <name>COO</name>
 
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
@@ -45,7 +45,7 @@
                 <configuration>
                 <archive>
                     <manifest>
-                    <mainClass>app.Main</mainClass>
+                    <mainClass>project.Main</mainClass>
                     </manifest>
                 </archive>
                 </configuration>
@@ -55,7 +55,7 @@
                 <artifactId>exec-maven-plugin</artifactId>
                 <version>1.6.0</version>
                 <configuration>
-                <mainClass>app.Main</mainClass>
+                <mainClass>project.Main</mainClass>
                 </configuration>
             </plugin>
             <plugin>
@@ -67,12 +67,6 @@
                 <groupId>org.pitest</groupId>
                 <artifactId>pitest-maven</artifactId>
                 <version>1.10.3</version>
-                <configuration>
-                    <excludedMethods>
-                        <param>set*</param>
-                        <param>get*</param>
-                    </excludedMethods>
-                </configuration>
                 <dependencies>
                     <dependency>
                         <groupId>org.pitest</groupId>

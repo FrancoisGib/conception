@@ -8,7 +8,10 @@ run-package:
 	java -jar target/coo-1.0.jar
 
 run:
-	mvn exec:java
+	mvn exec:java -Dexec.args="0"
+
+runInstantly:
+	mvn exec:java -Dexec.args="1"
 
 mutation:
 	mvn test-compile org.pitest:pitest-maven:mutationCoverage
