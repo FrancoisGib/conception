@@ -14,13 +14,13 @@ import project.stations.factories.BikeStationFactory;
 import project.stations.factories.StationFactory;
 
 public class Simulation {
-    protected static final int RENT_RATIO = 5;
+    protected static final int RENT_RATIO = 10;
 
     protected static final int SIMULATION_TIME = 60;
 
-    protected static final int CLIENT_MAX_RENT_TIME = 10;
+    protected static final int CLIENT_MAX_RENT_TIME = 6;
 
-    protected static final int CLIENT_MIN_RENT_TIME = 5;
+    protected static final int CLIENT_MIN_RENT_TIME = 3;
 
     public static final int TIME_BEFORE_VEHICLE_STOLLEN = CLIENT_MAX_RENT_TIME + 1; // must be greater or equals to 0;
 
@@ -36,6 +36,8 @@ public class Simulation {
 
     protected ArrayList<Client> clients = new ArrayList<>();
 
+    protected List<Repairer> repairers = new ArrayList<>();
+
     protected int loop = 0;
 
     public Simulation() {
@@ -49,10 +51,9 @@ public class Simulation {
                     + RentalStation.MIN_CAPACITY;
             this.stations.add(stationFactory.createStation(i, capacity));
         }
-        List<Repairer> repairers = new ArrayList<>();
         for (int i = 0; i < NUMBER_OF_REPAIRERS; i++)
-            repairers.add(new Repairer());
-        this.controlCenter = ControlCenter.getInstance(this.stations, repairers);
+            this.repairers.add(new Repairer());
+        this.controlCenter = ControlCenter.getInstance(this.stations, this.repairers);
     }
 
     public void start() {
@@ -92,6 +93,7 @@ public class Simulation {
             client.tick();
         }
         controlCenter.tick();
+        this.repairers.forEach(repairer -> repairer.tick());
         this.loop++;
     }
 }

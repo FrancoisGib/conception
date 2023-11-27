@@ -11,6 +11,7 @@ import project.persons.workers.Worker;
 import project.redistributions.Redistribution;
 import project.redistributions.RoundRobin;
 import project.stations.RentalStation;
+import project.vehicles.State;
 import project.vehicles.Vehicle;
 
 public class ControlCenter implements Observer, Timer {
@@ -94,6 +95,7 @@ public class ControlCenter implements Observer, Timer {
     }
 
     public void vehicleStollen(Vehicle vehicle) {
+        vehicle.setState(State.STOLEN);
         this.displayer.vehicleStollen(vehicle);
     } 
 
@@ -111,8 +113,7 @@ public class ControlCenter implements Observer, Timer {
             this.redistribute();
             this.redistributionCounter = 0;
         }
-        this.rentedVehicles.forEach(rent -> rent.tick());
-        this.repairers.forEach(repairer -> repairer.tick());
+        this.rentedVehicles.forEach(rent -> rent.increment());
         this.displayer.displayStations(stations);
     }
 }
