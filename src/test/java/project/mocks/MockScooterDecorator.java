@@ -1,30 +1,32 @@
 package project.mocks;
 
-import project.persons.Visitor;
+import project.vehicles.State;
+import project.vehicles.scooters.Scooter;
 import project.vehicles.scooters.utilities.ScooterDecorator;
 
 public class MockScooterDecorator extends ScooterDecorator {
-    protected MockScooter vehicle;
+    public boolean called = false;
 
-    public boolean acceptCalled = false;
-    public boolean setLivesCalled = false;
-
-    public MockScooterDecorator() {
-        super(new MockScooter());
+    public MockScooterDecorator(Scooter scooter) {
+        super(scooter);
     }
 
-    public void accept(Visitor visitor) {
-        this.acceptCalled = true;
-        this.vehicle.accept(visitor);
+    @Override
+    public int getId() {
+        this.called = true;
+        return super.getId();
     }
 
-    public void setLives(int lives) {
-        this.setLivesCalled = true;
-        super.setLives(lives);
+    @Override
+    public int getLives() {
+        this.called = true;
+        return super.getLives();
     }
 
-    public MockScooter getVehicle() {
-        return this.vehicle;
+    @Override
+    public State getState() {
+        this.called = true;
+        return super.getState();
     }
 }
 

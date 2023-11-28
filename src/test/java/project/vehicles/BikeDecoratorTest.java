@@ -1,22 +1,26 @@
 package project.vehicles;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertInstanceOf;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import project.mocks.MockBike;
 import project.mocks.MockBikeDecorator;
+import project.mocks.MockRepairer;
 import project.vehicles.bikes.Bike;
 import project.vehicles.bikes.ClassicBike;
 import project.vehicles.bikes.utilities.Backpack;
 import project.vehicles.bikes.utilities.BikeDecorator;
 import project.vehicles.bikes.utilities.LuggageRack;
 
-public class BikeDecoratorTest extends DecoratorTest {
+public class BikeDecoratorTest extends VehicleDecoratorTest {
     protected static final String SEPARATOR = " / ";
 
-    Bike vehicle;
+    MockBike vehicle;
 
     String baseDescription;
 
@@ -24,33 +28,44 @@ public class BikeDecoratorTest extends DecoratorTest {
 
     BikeDecorator decorator;
 
+    Bike classicVehicle;
+
     @BeforeEach
     public void init() {
         super.init();
-        this.vehicle = new ClassicBike(0);
+        this.vehicle = new MockBike();
+        this.decorator = new MockBikeDecorator(this.vehicle);
         this.baseDescription = Bike.DESCRIPTION;
         this.initialLives = Bike.INITIAL_LIVES;
-        this.decorator = new MockBikeDecorator();
+        this.classicVehicle = new ClassicBike(0);
     }
 
     @Test
     public void isDecoratedWithBackpack() {
-        vehicle = new Backpack(vehicle);
-        assertInstanceOf(Backpack.class, vehicle);
-        assertEquals(baseDescription + SEPARATOR + Backpack.DESCRIPTION, vehicle.getDescription());
+        classicVehicle = new Backpack(classicVehicle);
+        assertInstanceOf(Backpack.class, classicVehicle);
+        assertEquals(baseDescription + SEPARATOR + Backpack.DESCRIPTION, classicVehicle.getDescription());
     }
 
     @Test
     public void isDecoratedWithLuggageRack() {
-        vehicle = new LuggageRack(vehicle);
-        assertInstanceOf(LuggageRack.class, vehicle);
-        assertEquals(baseDescription + SEPARATOR + LuggageRack.DESCRIPTION, vehicle.getDescription());
+        classicVehicle = new LuggageRack(classicVehicle);
+        assertInstanceOf(LuggageRack.class, classicVehicle);
+        assertEquals(baseDescription + SEPARATOR + LuggageRack.DESCRIPTION, classicVehicle.getDescription());
     }
 
     @Test
     public void isDecoratedWithBackpackAndLuggageRack() {
-        vehicle = new LuggageRack(new Backpack(vehicle));
-        assertInstanceOf(LuggageRack.class, vehicle);
-        assertEquals(baseDescription + SEPARATOR + Backpack.DESCRIPTION + SEPARATOR + LuggageRack.DESCRIPTION, vehicle.getDescription());
+        classicVehicle = new LuggageRack(new Backpack(classicVehicle));
+        assertInstanceOf(LuggageRack.class, classicVehicle);
+        assertEquals(baseDescription + SEPARATOR + Backpack.DESCRIPTION + SEPARATOR + LuggageRack.DESCRIPTION, classicVehicle.getDescription());
+    }
+
+    @Test
+    public void checkAcceptCallOnVehicle() {
+        MockRepairer repairer = new MockRepairer();
+        assertFalse(vehicle.acceptCalled);
+        decorator.accept(repairer);
+        assertTrue(vehicle.acceptCalled);
     }
 }

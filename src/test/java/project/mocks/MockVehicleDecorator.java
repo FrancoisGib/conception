@@ -1,14 +1,23 @@
 package project.mocks;
 
+import project.persons.Visitor;
 import project.vehicles.State;
-import project.vehicles.bikes.Bike;
-import project.vehicles.bikes.utilities.BikeDecorator;
+import project.vehicles.VehicleDecorator;
 
-public class MockBikeDecorator extends BikeDecorator {
+public class MockVehicleDecorator extends VehicleDecorator {
+
+    public static final String DESCRIPTION = "MockDecorator";
+
     public boolean called = false;
 
-    public MockBikeDecorator(Bike bike) {
-        super(bike);
+    public MockVehicleDecorator(MockVehicle vehicle) {
+        super(vehicle);
+        this.description = DESCRIPTION;
+    }
+
+    @Override
+    public void accept(Visitor visitor) {
+        this.called = true;
     }
 
     @Override
@@ -28,4 +37,4 @@ public class MockBikeDecorator extends BikeDecorator {
         this.called = true;
         return super.getState();
     }
-}
+} 

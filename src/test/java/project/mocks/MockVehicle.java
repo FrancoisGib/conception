@@ -8,8 +8,8 @@ public class MockVehicle extends ClassicVehicle {
 
     public boolean called = false;
 
-    public MockVehicle() {
-        super(0);
+    public MockVehicle(int id) {
+        super(id);
         this.description = DESCRIPTION;
     }
 

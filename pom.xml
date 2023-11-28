@@ -67,6 +67,10 @@
                 <groupId>org.pitest</groupId>
                 <artifactId>pitest-maven</artifactId>
                 <version>1.10.3</version>
+                <configuration>
+                    <excludedMethods>set*</excludedMethods>
+                    <excludedMethods>get*</excludedMethods>
+                </configuration>
                 <dependencies>
                     <dependency>
                         <groupId>org.pitest</groupId>

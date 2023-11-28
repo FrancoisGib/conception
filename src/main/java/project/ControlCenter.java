@@ -94,9 +94,14 @@ public class ControlCenter implements Observer, Timer {
         else System.out.println("No repairer available, wait");
     }
 
-    public void vehicleStollen(Vehicle vehicle) {
+    public void vehicleStolen(Vehicle vehicle) {
         vehicle.setState(State.STOLEN);
         this.displayer.vehicleStollen(vehicle);
+    } 
+
+    public void vehicleBackFromStolen(Vehicle vehicle) {
+        vehicle.setState(State.STOLEN);
+        this.displayer.vehicleBackFromStolen(vehicle);
     } 
 
     public void tick() {

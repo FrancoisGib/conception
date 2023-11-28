@@ -4,8 +4,8 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
+import project.stations.ParkingSpace;
 import project.stations.RentalStation;
-import project.stations.spaces.ParkingSpace;
 import project.vehicles.State;
 import project.vehicles.Vehicle;
 
@@ -19,11 +19,15 @@ public class Displayer {
     }
 
     public void vehicleStollen(Vehicle vehicle) {
-        System.out.println("The vehicle " + vehicle.getId() + " has been stollen");
+        System.out.println("The vehicle " + vehicle.getId() + " has been stolen");
     }
 
     public void vehicleOutOfService(Vehicle vehicle) {
         System.out.println("The vehicle " + vehicle.getId() + " is out of service, a repairer has been called");
+    }
+
+    public void vehicleBackFromStolen(Vehicle vehicle) {
+        System.out.println("The vehicle " + vehicle.getId() + " who was considered stolen, has been returned");
     }
 
     public static final String ANSI_RESET = "\u001B[0m";

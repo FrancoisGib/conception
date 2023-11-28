@@ -8,12 +8,12 @@ public class MockScooter extends ClassicScooter {
     public boolean setLivesCalled = false;
 
     public MockScooter() {
-        super(0);
+        super(1);
     }
 
     public void accept(Visitor visitor) {
-        super.accept(visitor);
         this.acceptCalled = true;
+        super.accept(visitor);
     }
 
     public void setLives(int lives) {

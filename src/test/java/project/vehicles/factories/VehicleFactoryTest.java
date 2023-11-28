@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertSame;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import project.mocks.VehicleFactoryMock;
+import project.mocks.MockVehicleFactory;
 import project.vehicles.Vehicle;
 
 public abstract class VehicleFactoryTest {
@@ -14,7 +14,7 @@ public abstract class VehicleFactoryTest {
 
     @BeforeEach
     public void init() {
-        this.factory = new VehicleFactoryMock();
+        this.factory = new MockVehicleFactory();
     }
 
     @Test

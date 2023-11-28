@@ -1,16 +1,13 @@
 package project.stations;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import lombok.Getter;
 import project.Observer;
 import project.Simulation;
 import project.Timer;
-import project.stations.spaces.ParkingSpace;
-import project.stations.spaces.SpaceEmptyException;
-import project.stations.spaces.SpaceOccupiedException;
+
 import project.vehicles.State;
 import project.vehicles.Vehicle;
 
@@ -38,28 +35,45 @@ public class RentalStation implements Subject, Timer {
         this.capacity = spaces.size();
     }
 
-    public void storeVehicle(Vehicle vehicle) throws StationFullException, SpaceOccupiedException {
-        Iterator<ParkingSpace> iterator = this.spaces.iterator();
-        boolean found = false;
-        while (!found && iterator.hasNext()) {
-            ParkingSpace space = iterator.next();
+    public boolean storeVehicle(Vehicle vehicle) {
+        for (ParkingSpace space : spaces) {
             if (!space.isOccupied()) {
-                space.store(vehicle);
-                if (vehicle.getLives() == 0)
+                if (vehicle.getLives() == 0) {
                     vehicle.setState(State.OUT_OF_SERVICE);
-                found = true;
-                this.observer.vehicleStored(vehicle, this);
-                if (vehicle.getState() == State.OUT_OF_SERVICE)
                     this.observer.vehicleOutOfService(vehicle);
-                else
+                }
+                else {
                     vehicle.setState(State.STORED);
+                }
+                this.observer.vehicleStored(vehicle, this);
+                space.store(vehicle);
+                return true;
             }
         }
-        if (!found)
-            throw new StationFullException();
+        return false;
     }
 
-    public Vehicle rentVehicle() throws StationEmptyException, SpaceEmptyException {
+/*public boolean storeVehicle(Vehicle vehicle) {
+        for (ParkingSpace space : spaces) {
+            if (!space.isOccupied()) {
+                if (vehicle.getState() == State.STOLEN)
+                    this.observer.vehicleBackFromStolen(vehicle);
+                if (vehicle.getLives() == 0) {
+                    vehicle.setState(State.OUT_OF_SERVICE);
+                    this.observer.vehicleOutOfService(vehicle);
+                }
+                else {
+                    vehicle.setState(State.STORED);
+                    this.observer.vehicleStored(vehicle, this);
+                }
+                space.store(vehicle);
+                return true;
+            }
+        }
+        return false;
+    }*/
+
+    public Vehicle rentVehicle() {
         for (ParkingSpace space : this.spaces) {
             if (space.isOccupied()) {
                 Vehicle spaceVehicle = space.getVehicle();
@@ -71,9 +85,8 @@ public class RentalStation implements Subject, Timer {
                 }
             }
         }
-        throw new StationEmptyException();
+        return null;
     }
-
 
     private void rented(Vehicle vehicle) {
         int newVehicleLives = vehicle.getLives() - 1;
@@ -121,15 +134,10 @@ public class RentalStation implements Subject, Timer {
         if (cpt == 1) {
             this.onlyOneVehicleCount++;
             if (this.onlyOneVehicleCount == TIME_BEFORE_VEHICLE_STOLLEN) {
-                try {
-                    Vehicle stollenVehicle = vehicleSpace.remove();
-                    stollenVehicle.setState(State.STOLEN);
-                } catch (SpaceEmptyException e) {
-                    e.printStackTrace();
-                }
+                Vehicle stolenVehicle = vehicleSpace.remove();
+                stolenVehicle.setState(State.STOLEN);
                 this.onlyOneVehicleCount = 0;
             }
-        } else
-            this.onlyOneVehicleCount = 0;
+        }
     }
 }

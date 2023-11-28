@@ -2,9 +2,8 @@ package project.redistributions;
 
 import java.util.List;
 
+import project.stations.ParkingSpace;
 import project.stations.RentalStation;
-import project.stations.spaces.ParkingSpace;
-import project.stations.spaces.SpaceOccupiedException;
 import project.vehicles.Vehicle;
 
 public class RoundRobin extends Redistribution {
@@ -16,12 +15,9 @@ public class RoundRobin extends Redistribution {
             int stationIndex = cpt % stations.size();
             RentalStation station = stations.get(stationIndex);
             if (!station.isFull()) {
-                try {
-                    ParkingSpace space = this.getFirstFreeSlot(station);
+                ParkingSpace space = this.getFirstFreeSlot(station);
+                if (space != null)
                     space.store(vehicles.remove(0));
-                } catch (SpaceOccupiedException e) {
-                    e.printStackTrace();
-                }
             }
             cpt++;
         }

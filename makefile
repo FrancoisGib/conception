@@ -19,5 +19,8 @@ mutation:
 test:
 	mvn test
 
+push:
+	git push -u origin main; git push -u gitlab main
+
 clean:
 	mvn clean

@@ -11,9 +11,11 @@ import project.mocks.MockVehicle;
 public class VehicleTest {
     protected MockVehicle vehicle;
 
+    protected Vehicle classicVehicle;
+
     @BeforeEach
     public void init() {
-        this.vehicle = new MockVehicle();
+        this.vehicle = new MockVehicle(0);
     }
 
     @Test
@@ -53,4 +55,5 @@ public class VehicleTest {
         vehicle.setLives(0);
         assertFalse(vehicle.isRentable());
     }
+    
 }

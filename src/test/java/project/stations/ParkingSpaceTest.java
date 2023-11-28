@@ -1,17 +1,14 @@
 package project.stations;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertSame;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import project.mocks.MockVehicle;
-import project.stations.spaces.ParkingSpace;
-import project.stations.spaces.SpaceEmptyException;
-import project.stations.spaces.SpaceOccupiedException;
 import project.vehicles.Vehicle;
 
 public class ParkingSpaceTest {
@@ -20,31 +17,33 @@ public class ParkingSpaceTest {
 
     @BeforeEach
     public void init() {
-        this.vehicle = new MockVehicle();
+        this.vehicle = new MockVehicle(0);
         this.space = new ParkingSpace();
     }
 
     @Test
-    public void storeVehicleInSpaceWorking() throws SpaceOccupiedException {
-        space.store(vehicle);
+    public void storeVehicleInSpaceWorking() {
+        assertTrue(space.store(vehicle));
         assertSame(vehicle, space.getVehicle());
     }
 
     @Test
-    public void storeVehicleWhenSpaceOccupied() throws SpaceOccupiedException {
+    public void storeVehicleWhenSpaceOccupied() {
         space.store(vehicle);
-        assertThrows(SpaceOccupiedException.class, () -> space.store(vehicle));
+        assertFalse(space.store(vehicle));
     }
 
     @Test
-    public void removeVehicleInSpaceWorking() throws SpaceEmptyException, SpaceOccupiedException {
-        space.store(vehicle);
-        assertSame(vehicle, space.remove());
+    public void removeVehicleInSpaceWorking() {
+        boolean res = space.store(vehicle);
+        assertTrue(res);
+        Vehicle spaceVehicle = space.remove();
+        assertSame(vehicle, spaceVehicle);
     }
 
     @Test
-    public void removeVehicleWhenSpaceEmpty() throws SpaceEmptyException {
-        assertThrows(SpaceEmptyException.class, () -> space.remove());
+    public void removeVehicleWhenSpaceEmpty() {
+        assertNull(space.remove());
     }
 
     @Test
@@ -53,7 +52,7 @@ public class ParkingSpaceTest {
     }
 
     @Test
-    public void isOccupiedWorking() throws SpaceOccupiedException {
+    public void isOccupiedWorking() {
         space.store(vehicle);
         assertTrue(space.isOccupied());
     }

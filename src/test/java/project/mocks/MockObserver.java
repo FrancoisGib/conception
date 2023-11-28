@@ -5,21 +5,25 @@ import project.stations.RentalStation;
 import project.vehicles.Vehicle;
 
 public class MockObserver implements Observer {
-    public boolean called = false;
+    public int cpt = 0;
 
     public void vehicleRented(Vehicle vehicle, RentalStation station){
-        called = true;
+        cpt++;
     }
 
     public void vehicleStored(Vehicle vehicle, RentalStation station) {
-        called = true;
+        cpt++;
     }
 
     public void vehicleOutOfService(Vehicle vehicle) {
-        called = true;
+        cpt++;
     }
 
-    public void vehicleStollen(Vehicle vehicle) {
-        called = true;
+    public void vehicleStolen(Vehicle vehicle) {
+        cpt++;
+    }
+
+    public void vehicleBackFromStolen(Vehicle vehicle) {
+        cpt++;
     }
 }

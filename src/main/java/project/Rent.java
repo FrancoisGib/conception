@@ -20,7 +20,7 @@ public class Rent implements Subject {
 
     public void increment() {
         if (this.time == Simulation.TIME_BEFORE_VEHICLE_STOLLEN) {
-            this.observer.vehicleStollen(vehicle);
+            this.observer.vehicleStolen(vehicle);
         }
         this.time++;
     }

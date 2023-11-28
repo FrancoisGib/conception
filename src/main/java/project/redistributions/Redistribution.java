@@ -3,9 +3,8 @@ package project.redistributions;
 import java.util.ArrayList;
 import java.util.List;
 
+import project.stations.ParkingSpace;
 import project.stations.RentalStation;
-import project.stations.spaces.ParkingSpace;
-import project.stations.spaces.SpaceEmptyException;
 import project.vehicles.Vehicle;
 
 public abstract class Redistribution {
@@ -16,11 +15,7 @@ public abstract class Redistribution {
         for (RentalStation station : stations) {
             station.getSpaces().forEach((space) -> {
                 if (space.isOccupied()) {
-                    try {
-                        vehicles.add(space.remove());
-                    } catch (SpaceEmptyException e) {
-                        e.printStackTrace();
-                    }
+                    vehicles.add(space.remove());
                 }
             });
         }
