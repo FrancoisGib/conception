@@ -1,4 +1,4 @@
-package project.stations;
+package project.stations.spaces;
 
 import lombok.Getter;
 import project.vehicles.Vehicle;
@@ -7,22 +7,21 @@ public class ParkingSpace {
     @Getter
     Vehicle vehicle;
 
-    public boolean store(Vehicle vehicle) {
+    public void store(Vehicle vehicle) throws SpaceFullException {
         if (this.vehicle != null)
-            return false;
+            throw new SpaceFullException();
         this.vehicle = vehicle;
-        return true;
     }
 
-    public Vehicle remove() {
+    public Vehicle remove() throws SpaceEmptyException {
         if (this.vehicle == null)
-            return null;
+            throw new SpaceEmptyException();
         Vehicle currentVehicle = this.vehicle;
         this.vehicle = null;
         return currentVehicle;
     }
 
-    public boolean isOccupied() {
-        return this.vehicle != null;
+    public boolean isEmpty() {
+        return this.vehicle == null;
     }
 }

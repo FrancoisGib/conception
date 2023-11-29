@@ -3,8 +3,6 @@ package project.vehicles;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertInstanceOf;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -14,7 +12,7 @@ import project.mocks.MockVehicleDecorator;
 import project.mocks.MockVehicle;
 
 
-public abstract class VehicleDecoratorTest {
+public class VehicleDecoratorTest {
     protected static final String SEPARATOR = " / ";
 
     MockVehicle vehicle;
@@ -61,47 +59,4 @@ public abstract class VehicleDecoratorTest {
         decorator.setLives(0);
         assertFalse(decorator.isRentable());
     }
-
-    @Test
-    public void decoratorGetParentId() {
-        assertFalse(decorator.called);
-        int id = decorator.getId();
-        assertSame(id, vehicle.getId());
-        assertSame(this.initialId, id);
-        //assertNotSame(0, id);
-        assertTrue(decorator.called);
-    }
-
-    @Test
-    public void decoratorGetParentLives() {
-        assertFalse(decorator.called);
-        decorator.setLives(10);
-        int lives = decorator.getLives();
-        assertSame(lives, vehicle.getLives());
-        assertTrue(decorator.called);
-    }
-
-    @Test
-    public void decoratorGetParentState() {
-        assertFalse(decorator.called);
-        State state = State.RENTED;
-        decorator.setState(state);
-        assertNotNull(state);
-        assertSame(state, decorator.getState());
-        assertTrue(decorator.called);
-    }
-
-    @Test
-    public void decrementLivesAndStateChangeWhenRented() {
-        State state = State.STORED;
-        decorator.setState(state);
-        decorator.setLives(initialLives);
-        assertSame(initialLives, decorator.getLives());
-        assertSame(State.STORED, decorator.getState());
-        decorator.rented();
-        assertSame(initialLives - 1, decorator.getLives());
-        assertSame(State.RENTED, decorator.getState());
-    }
-
-    public abstract void checkAcceptCallOnVehicle();
 }

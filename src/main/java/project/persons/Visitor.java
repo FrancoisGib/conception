@@ -1,7 +1,7 @@
 package project.persons;
 
-import project.vehicles.bikes.Bike;
-import project.vehicles.scooters.Scooter;
+import project.vehicles.Bike;
+import project.vehicles.Scooter;
 
 public interface Visitor {
     public void visit(Bike bike);

@@ -1,8 +1,8 @@
 package project.mocks;
 
 import project.persons.Visitor;
-import project.vehicles.bikes.Bike;
-import project.vehicles.scooters.Scooter;
+import project.vehicles.Bike;
+import project.vehicles.Scooter;
 
 public class MockVisitor implements Visitor {
     public boolean called = false;

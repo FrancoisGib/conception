@@ -1,9 +1,9 @@
 package project.mocks;
 
 import project.persons.workers.Repairer;
+import project.vehicles.Bike;
+import project.vehicles.Scooter;
 import project.vehicles.Vehicle;
-import project.vehicles.bikes.Bike;
-import project.vehicles.scooters.Scooter;
 
 public class MockRepairer extends Repairer {
     public boolean called = false;

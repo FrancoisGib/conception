@@ -3,8 +3,9 @@ package project.stations.factories;
 import java.util.ArrayList;
 import java.util.List;
 
-import project.stations.ParkingSpace;
 import project.stations.RentalStation;
+import project.stations.spaces.ParkingSpace;
+import project.stations.spaces.SpaceFullException;
 import project.vehicles.State;
 import project.vehicles.Vehicle;
 import project.vehicles.factories.VehicleFactory;
@@ -22,10 +23,14 @@ public abstract class StationFactory {
             Vehicle newVehicle = this.factory.createVehicle(i + (id * RentalStation.MAX_CAPACITY));
             newVehicle.setState(State.STORED);
             ParkingSpace space = new ParkingSpace();
-            space.store(newVehicle);
+            try {
+                space.store(newVehicle);
+            } catch (SpaceFullException e) {
+                e.printStackTrace();
+            }
             spaces.add(space);
         }
         return new RentalStation(id, spaces);
     }
-        
+
 }

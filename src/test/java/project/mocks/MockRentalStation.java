@@ -3,8 +3,8 @@ package project.mocks;
 import java.util.ArrayList;
 import java.util.List;
 
-import project.stations.ParkingSpace;
 import project.stations.RentalStation;
+import project.stations.spaces.ParkingSpace;
 
 public class MockRentalStation extends RentalStation {
     protected List<MockParkingSpace> spaces;

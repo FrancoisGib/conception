@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 
 import project.mocks.MockStationFactory;
 import project.mocks.MockVehicleFactory;
+import project.stations.spaces.ParkingSpace;
 import project.vehicles.State;
 import project.vehicles.Vehicle;
 

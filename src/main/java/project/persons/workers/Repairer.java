@@ -1,8 +1,8 @@
 package project.persons.workers;
 
+import project.vehicles.Bike;
+import project.vehicles.Scooter;
 import project.vehicles.State;
-import project.vehicles.bikes.Bike;
-import project.vehicles.scooters.Scooter;
 
 public class Repairer extends Worker {
     public int initialVehicleLives;

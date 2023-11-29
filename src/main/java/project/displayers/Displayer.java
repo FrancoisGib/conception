@@ -4,8 +4,8 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
-import project.stations.ParkingSpace;
 import project.stations.RentalStation;
+import project.stations.spaces.ParkingSpace;
 import project.vehicles.State;
 import project.vehicles.Vehicle;
 
@@ -50,7 +50,7 @@ public class Displayer {
         int i = 0;
         for (RentalStation rentalStation : stations) {
             for (ParkingSpace space : rentalStation.getSpaces()) {
-                if (space.isOccupied()) {
+                if (!space.isEmpty()) {
                     Vehicle vehicle = space.getVehicle();
                     this.vehiclesColor.put(vehicle, COLORS.get(i % COLORS.size()));
                 }
@@ -63,7 +63,7 @@ public class Displayer {
         String res = "";
         for (RentalStation rentalStation : stations) {
             for (ParkingSpace space : rentalStation.getSpaces()) {
-                if (space.isOccupied()) {
+                if (!space.isEmpty()) {
                     Vehicle vehicle = space.getVehicle();
                     res += this.vehiclesColor.get(vehicle) + "  " + ANSI_RESET + " ";
                 } else
@@ -78,7 +78,7 @@ public class Displayer {
         for (RentalStation station : stations) {
             String res = "";
             for (ParkingSpace space : station.getSpaces()) {
-                if (space.isOccupied()) {
+                if (!space.isEmpty()) {
                     State vehicleState = space.getVehicle().getState();
                     if (vehicleState == State.REPARATION)
                         res += "👨‍🔧";

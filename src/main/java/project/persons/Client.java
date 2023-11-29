@@ -3,6 +3,8 @@ package project.persons;
 import lombok.Getter;
 import project.Timer;
 import project.stations.RentalStation;
+import project.stations.StationEmptyException;
+import project.stations.StationFullException;
 import project.vehicles.State;
 import project.vehicles.Vehicle;
 
@@ -25,20 +27,21 @@ public class Client implements Timer {
 
     public void rentVehicle(RentalStation station) {
         this.station = station;
-        this.vehicle = station.rentVehicle();
-        if (this.vehicle == null)
+        try {
+            this.vehicle = station.rentVehicle();
+        } catch (StationEmptyException e) {
             System.out.println("Empty station " + this.station.getId() + " : come back later !");
+        }
     }
 
     private void storeVehicle() {
-        boolean res = this.station.storeVehicle(this.vehicle);
-        if (res) {
-            this.rentCounter=0;
-            this.vehicle=null;
-        }
-        else
+        try {
+            this.station.storeVehicle(this.vehicle);
+            this.rentCounter = 0;
+            this.vehicle = null;
+        } catch (StationFullException e) {
             System.out.println("The station is full, return the vehicle later");
-
+        }
     }
 
     public boolean hasVehicle() {

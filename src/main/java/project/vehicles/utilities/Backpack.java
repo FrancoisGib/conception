@@ -1,8 +1,8 @@
-package project.vehicles.bikes.utilities;
+package project.vehicles.utilities;
 
-import project.vehicles.bikes.Bike;
+import project.vehicles.Bike;
 
-public class Backpack extends BikeDecorator {
+public class Backpack extends VehicleDecorator {
     public static final String DESCRIPTION = "Backpack";
 
     public Backpack(Bike bike) {

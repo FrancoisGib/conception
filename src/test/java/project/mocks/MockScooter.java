@@ -1,9 +1,9 @@
 package project.mocks;
 
 import project.persons.Visitor;
-import project.vehicles.scooters.ClassicScooter;
+import project.vehicles.Scooter;
 
-public class MockScooter extends ClassicScooter {
+public class MockScooter extends Scooter {
     public boolean acceptCalled = false;
     public boolean setLivesCalled = false;
 

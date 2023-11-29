@@ -1,9 +1,9 @@
 package project.mocks;
 
 import project.persons.Visitor;
-import project.vehicles.ClassicVehicle;
+import project.vehicles.Vehicle;
 
-public class MockVehicle extends ClassicVehicle {
+public class MockVehicle extends Vehicle {
     public static final String DESCRIPTION = "MockVehicle";
 
     public boolean called = false;

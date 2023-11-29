@@ -1,8 +1,8 @@
-package project.vehicles.bikes.utilities;
+package project.vehicles.utilities;
 
-import project.vehicles.bikes.Bike;
+import project.vehicles.Bike;
 
-public class LuggageRack extends BikeDecorator {
+public class LuggageRack extends VehicleDecorator {
     public static final String DESCRIPTION = "Luggage Rack";
 
     public LuggageRack(Bike vehicle) {

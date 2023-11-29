@@ -1,6 +1,8 @@
 package project.mocks;
 
-import project.stations.ParkingSpace;
+import project.stations.spaces.ParkingSpace;
+import project.stations.spaces.SpaceEmptyException;
+import project.stations.spaces.SpaceFullException;
 import project.vehicles.Vehicle;
 
 public class MockParkingSpace extends ParkingSpace {
@@ -9,13 +11,13 @@ public class MockParkingSpace extends ParkingSpace {
     protected MockVehicle vehicle;
 
     @Override
-    public boolean store(Vehicle vehicle) {
+    public void store(Vehicle vehicle) throws SpaceFullException {
         this.cpt++;
-        return super.store(vehicle);
+        super.store(vehicle);
     }
 
     @Override
-    public Vehicle remove() {
+    public Vehicle remove() throws SpaceEmptyException {
         this.cpt++;
         return super.remove();
     }

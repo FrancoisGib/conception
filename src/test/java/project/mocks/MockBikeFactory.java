@@ -1,7 +1,6 @@
 package project.mocks;
 
-import project.vehicles.bikes.Bike;
-import project.vehicles.bikes.ClassicBike;
+import project.vehicles.Bike;
 import project.vehicles.factories.BikeFactory;
 
 public class MockBikeFactory extends BikeFactory {
@@ -9,6 +8,6 @@ public class MockBikeFactory extends BikeFactory {
 
     public Bike createVehicle(int id) {
         this.cpt++;
-        return new ClassicBike(id);
+        return new Bike(id);
     }
 }

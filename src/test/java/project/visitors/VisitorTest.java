@@ -9,8 +9,8 @@ import org.junit.jupiter.api.Test;
 import project.mocks.MockBike;
 import project.mocks.MockScooter;
 import project.mocks.MockVisitor;
-import project.vehicles.bikes.Bike;
-import project.vehicles.scooters.Scooter;
+import project.vehicles.Bike;
+import project.vehicles.Scooter;
 
 public abstract class VisitorTest {
     MockVisitor visitor;
