@@ -6,17 +6,11 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import project.mocks.MockVehicle;
-
-public class VehicleTest {
-    protected MockVehicle vehicle;
-
-    protected Vehicle classicVehicle;
+public abstract class VehicleTest {
+    protected Vehicle vehicle;
 
     @BeforeEach
-    public void init() {
-        this.vehicle = new MockVehicle(0);
-    }
+    public abstract void init();
 
     @Test
     public void cannotBeRentedBecauseAlreadyRented() {

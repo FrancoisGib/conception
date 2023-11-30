@@ -2,7 +2,7 @@ package project.vehicles;
 
 import lombok.Getter;
 import lombok.Setter;
-import project.persons.Visitor;
+import project.persons.workers.Worker;
 
 public abstract class Vehicle {
     @Getter
@@ -25,6 +25,6 @@ public abstract class Vehicle {
         return this.state == State.STORED && this.lives > 0;
     }
 
-    public abstract void accept(Visitor visitor);
+    public abstract void accept(Worker worker);
 }
 

@@ -1,9 +1,10 @@
 package project.mocks;
 
-import project.persons.Visitor;
+import project.persons.workers.Worker;
 import project.vehicles.Scooter;
 
 public class MockScooter extends Scooter {
+
     public boolean acceptCalled = false;
     public boolean setLivesCalled = false;
 
@@ -11,9 +12,9 @@ public class MockScooter extends Scooter {
         super(1);
     }
 
-    public void accept(Visitor visitor) {
+    public void accept(Worker worker) {
         this.acceptCalled = true;
-        super.accept(visitor);
+        super.accept(worker);
     }
 
     public void setLives(int lives) {

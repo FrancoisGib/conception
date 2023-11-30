@@ -1,19 +1,23 @@
 package project.mocks;
 
-import project.persons.Visitor;
+import project.persons.workers.Worker;
 import project.vehicles.Vehicle;
 
 public class MockVehicle extends Vehicle {
-    public static final String DESCRIPTION = "MockVehicle";
 
-    public boolean called = false;
+    public boolean acceptCalled = false;
+    public boolean setLivesCalled = false;
 
-    public MockVehicle(int id) {
-        super(id);
-        this.description = DESCRIPTION;
+    public MockVehicle() {
+        super(1);
     }
 
-    public void accept(Visitor visitor) {
-        this.called = true;
+    public void accept(Worker worker) {
+        this.acceptCalled = true;
+    }
+
+    public void setLives(int lives) {
+        this.setLivesCalled = true;
+        super.setLives(lives);
     }
 }

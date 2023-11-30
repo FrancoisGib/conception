@@ -1,6 +1,6 @@
 package project.mocks;
 
-import project.persons.Visitor;
+import project.persons.workers.Worker;
 import project.vehicles.Bike;
 
 public class MockBike extends Bike {
@@ -12,9 +12,9 @@ public class MockBike extends Bike {
         super(1);
     }
 
-    public void accept(Visitor visitor) {
+    public void accept(Worker worker) {
         this.acceptCalled = true;
-        super.accept(visitor);
+        super.accept(worker);
     }
 
     public void setLives(int lives) {

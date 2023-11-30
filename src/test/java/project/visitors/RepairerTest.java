@@ -2,7 +2,7 @@ package project.visitors;
 
 import org.junit.jupiter.api.BeforeEach;
 
-import project.mocks.MockRepairer;
+import project.persons.workers.Repairer;
 
 public class RepairerTest extends VisitorTest {
     MockRepairer visitor;
@@ -11,5 +11,8 @@ public class RepairerTest extends VisitorTest {
     public void init() {
         super.init();
         this.visitor = new MockRepairer();
+    }
+
+    protected class MockRepairer extends Repairer {
     }
 }

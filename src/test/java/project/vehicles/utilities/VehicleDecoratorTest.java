@@ -1,4 +1,4 @@
-package project.vehicles;
+package project.vehicles.utilities;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -8,31 +8,31 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import project.mocks.MockVehicleDecorator;
+import project.vehicles.State;
+import project.vehicles.Vehicle;
 import project.mocks.MockVehicle;
 
 
-public class VehicleDecoratorTest {
+public abstract class VehicleDecoratorTest {
     protected static final String SEPARATOR = " / ";
 
-    MockVehicle vehicle;
+    public Vehicle vehicle;
 
-    String baseDescription;
+    protected String baseDescription;
 
-    int initialLives;
+    protected int initialLives;
 
-    MockVehicleDecorator decorator;
+    public VehicleDecorator decorator;
 
-    int initialId;
+    protected abstract Vehicle createVehicle();
+
+    protected abstract VehicleDecorator createDecorator();
 
     @BeforeEach
     public void init() {
-        this.initialId = 1;
-        this.vehicle = new MockVehicle(this.initialId);
-        this.baseDescription = MockVehicle.DESCRIPTION;
-        this.decorator = new MockVehicleDecorator(this.vehicle);
-        this.initialLives = 0;
-    }
+        this.vehicle = this.createVehicle();
+        this.decorator = this.createDecorator();
+    };
 
     @Test
     public void isDecoratedWithComponent() {
@@ -58,5 +58,12 @@ public class VehicleDecoratorTest {
         decorator.setState(State.STORED);
         decorator.setLives(0);
         assertFalse(decorator.isRentable());
+    }
+
+    @Test
+    public abstract void vehicleAcceptCalledWhenAcceptVisitor();
+
+    protected class MockVehicleDecorator {
+        public static final String DESCRIPTION = "Mock Vehicle Decorator";
     }
 }

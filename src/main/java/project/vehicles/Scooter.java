@@ -1,6 +1,6 @@
 package project.vehicles;
 
-import project.persons.Visitor;
+import project.persons.workers.Worker;
 
 public class Scooter extends Vehicle {
     public static final String DESCRIPTION = "Scooter";
@@ -13,8 +13,8 @@ public class Scooter extends Vehicle {
         this.lives = INITIAL_LIVES;
     }
 
-    public void accept(Visitor visitor) {
-        visitor.visit(this);
+    public void accept(Worker worker) {
+        worker.visit(this);
     }
 }
 

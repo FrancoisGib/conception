@@ -1,6 +1,6 @@
 package project.vehicles.utilities;
 
-import project.persons.Visitor;
+import project.persons.workers.Worker;
 import project.vehicles.Vehicle;
 
 public abstract class VehicleDecorator extends Vehicle {
@@ -17,8 +17,8 @@ public abstract class VehicleDecorator extends Vehicle {
         this.vehicle = vehicle;
     }
 
-    public void accept(Visitor visitor) {
-        this.vehicle.accept(visitor);
+    public void accept(Worker worker) {
+        this.vehicle.accept(worker);
     }
 
     public String getDescription() {
