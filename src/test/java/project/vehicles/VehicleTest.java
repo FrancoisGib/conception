@@ -9,8 +9,12 @@ import org.junit.jupiter.api.Test;
 public abstract class VehicleTest {
     protected Vehicle vehicle;
 
+    protected abstract Vehicle createVehicle();
+
     @BeforeEach
-    public abstract void init();
+    public void init() {
+        this.vehicle = this.createVehicle();
+    }
 
     @Test
     public void cannotBeRentedBecauseAlreadyRented() {

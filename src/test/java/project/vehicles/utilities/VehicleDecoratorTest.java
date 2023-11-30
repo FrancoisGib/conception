@@ -2,27 +2,27 @@ package project.vehicles.utilities;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertInstanceOf;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import project.mocks.MockVehicle;
+import project.persons.workers.Worker;
+import project.vehicles.Bike;
+import project.vehicles.Scooter;
 import project.vehicles.State;
 import project.vehicles.Vehicle;
-import project.mocks.MockVehicle;
-
 
 public abstract class VehicleDecoratorTest {
     protected static final String SEPARATOR = " / ";
 
-    public Vehicle vehicle;
+    protected Vehicle vehicle;
 
     protected String baseDescription;
 
     protected int initialLives;
 
-    public VehicleDecorator decorator;
+    protected VehicleDecorator decorator;
 
     protected abstract Vehicle createVehicle();
 
@@ -33,18 +33,6 @@ public abstract class VehicleDecoratorTest {
         this.vehicle = this.createVehicle();
         this.decorator = this.createDecorator();
     };
-
-    @Test
-    public void isDecoratedWithComponent() {
-        assertInstanceOf(MockVehicleDecorator.class, decorator);
-        assertEquals(this.baseDescription + SEPARATOR + MockVehicleDecorator.DESCRIPTION, decorator.getDescription());
-    }
-
-    @Test
-    public void isNotDecorated() {
-        assertInstanceOf(MockVehicle.class, vehicle);
-        assertEquals(this.baseDescription, vehicle.getDescription());
-    }
 
     @Test
     public void canBeRented() {
@@ -61,9 +49,42 @@ public abstract class VehicleDecoratorTest {
     }
 
     @Test
-    public abstract void vehicleAcceptCalledWhenAcceptVisitor();
+    public void vehicleAcceptCalledWhenAcceptVisitor() {
+        MockVehicle mockVehicle = new MockVehicle(0);
+        VehicleDecorator newDecorator = new MockVehicleDecorator(mockVehicle);
+        assertFalse(mockVehicle.acceptCalled);
+        newDecorator.accept(new MockWorker());
+        assertTrue(mockVehicle.acceptCalled);
+    }
 
-    protected class MockVehicleDecorator {
+    @Test
+    public void getDescriptionWithVehicleDescription() {
+        MockVehicle mockVehicle = new MockVehicle(0);
+        VehicleDecorator newDecorator = new MockVehicleDecorator(mockVehicle);
+        assertFalse(mockVehicle.getDescriptionCalled);
+        assertEquals(mockVehicle.getDescription() + SEPARATOR + MockVehicleDecorator.DESCRIPTION, newDecorator.getDescription());
+        assertTrue(mockVehicle.getDescriptionCalled);
+    }
+
+    protected class MockVehicleDecorator extends VehicleDecorator {
         public static final String DESCRIPTION = "Mock Vehicle Decorator";
+
+        public boolean acceptCalled = false;
+
+        public MockVehicleDecorator(Vehicle vehicle) {
+            super(vehicle);
+            this.description = DESCRIPTION;
+        }
+
+        public void accept(Worker worker) {
+            acceptCalled = true;
+            super.accept(worker);
+        }
+    }
+
+    protected class MockWorker extends Worker {
+        public void tick() {}
+        public void visit(Bike bike) {}
+        public void visit(Scooter scooter) {}
     }
 }

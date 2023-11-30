@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import project.stations.RentalStation;
+import project.stations.StationEmptyException;
 import project.stations.spaces.ParkingSpace;
 import project.stations.spaces.SpaceEmptyException;
 import project.vehicles.Vehicle;
@@ -24,11 +25,11 @@ public abstract class Redistribution {
         return vehicles;
     }
 
-    protected ParkingSpace getFirstFreeSlot(RentalStation station) {
+    protected ParkingSpace getFirstFreeSpace(RentalStation station) throws StationEmptyException {
         for (ParkingSpace space : station.getSpaces()) {
             if (space.isEmpty())
                 return space;
         }
-        return null;
+        throw new StationEmptyException();
     }
 }

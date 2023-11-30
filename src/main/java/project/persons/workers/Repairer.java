@@ -5,7 +5,7 @@ import project.vehicles.Scooter;
 import project.vehicles.State;
 
 public class Repairer extends Worker {
-    public int initialVehicleLives;
+    protected int initialVehicleLives;
 
     public void visit(Bike bike) {
         bike.setState(State.REPARATION);
@@ -23,13 +23,12 @@ public class Repairer extends Worker {
 
     public void tick() {
         if (this.vehicle != null) {
-            if (this.cpt < this.reparationTime)
-                this.cpt++;
-            else {
+            this.cpt++;
+            if (this.cpt == this.reparationTime) {
                 this.cpt = 0;
                 this.vehicle.setLives(this.initialVehicleLives);
                 this.vehicle.setState(State.STORED);
-                System.out.println("The vehicle " + vehicle.getId() + " has been repaired, it is now available");
+                this.observer.vehicleRepaired(vehicle);
                 this.vehicle = null;
             }
         }

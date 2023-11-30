@@ -100,9 +100,12 @@ public class ControlCenter implements Observer, Timer {
     } 
 
     public void vehicleBackFromStolen(Vehicle vehicle) {
-        vehicle.setState(State.STOLEN);
         this.displayer.vehicleBackFromStolen(vehicle);
-    } 
+    }
+
+    public void vehicleRepaired(Vehicle vehicle) {
+        this.displayer.vehicleRepaired(vehicle);
+    }
 
     public void tick() {
         boolean found = false;

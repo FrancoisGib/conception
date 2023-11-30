@@ -9,4 +9,5 @@ public interface Observer {
     public void vehicleOutOfService(Vehicle vehicle);
     public void vehicleStolen(Vehicle vehicle);
     public void vehicleBackFromStolen(Vehicle vehicle);
+    public void vehicleRepaired(Vehicle vehicle);
 }

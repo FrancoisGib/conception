@@ -1,10 +1,9 @@
 package project;
 
 import lombok.Getter;
-import project.stations.Subject;
 import project.vehicles.Vehicle;
 
-public class Rent implements Subject {
+public class Rent {
     @Getter
     private Vehicle vehicle;
 

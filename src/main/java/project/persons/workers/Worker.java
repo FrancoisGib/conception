@@ -1,21 +1,28 @@
 package project.persons.workers;
 
+import project.Observer;
 import project.Timer;
 import project.vehicles.Bike;
 import project.vehicles.Scooter;
 import project.vehicles.Vehicle;
 
 public abstract class Worker implements Timer {
-    public int cpt = 0;
+    protected int cpt = 0;
 
-    public int reparationTime;
+    protected int reparationTime;
 
-    public Vehicle vehicle;
+    protected Vehicle vehicle;
+
+    protected Observer observer;
 
     public abstract void tick();
 
     public boolean isOccupied() {
         return this.vehicle != null;
+    }
+
+    public void attach(Observer observer) {
+        this.observer = observer;
     }
 
     public abstract void visit(Bike bike);

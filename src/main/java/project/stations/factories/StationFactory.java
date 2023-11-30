@@ -11,7 +11,7 @@ import project.vehicles.Vehicle;
 import project.vehicles.factories.VehicleFactory;
 
 public abstract class StationFactory {
-    private VehicleFactory factory;
+    protected VehicleFactory factory;
 
     public StationFactory(VehicleFactory factory) {
         this.factory = factory;
@@ -26,7 +26,6 @@ public abstract class StationFactory {
             try {
                 space.store(newVehicle);
             } catch (SpaceFullException e) {
-                e.printStackTrace();
             }
             spaces.add(space);
         }

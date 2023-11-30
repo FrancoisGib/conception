@@ -4,7 +4,6 @@ import project.persons.workers.Worker;
 import project.vehicles.Scooter;
 
 public class MockScooter extends Scooter {
-
     public boolean acceptCalled = false;
     public boolean setLivesCalled = false;
 
