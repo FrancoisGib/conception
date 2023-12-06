@@ -32,12 +32,21 @@ public class RentalStation implements Timer {
     @Getter
     private int capacity;
 
+    /**
+     * Represents a rental station for parking spaces.
+     */
     public RentalStation(int id, List<ParkingSpace> spaces) {
         this.spaces = spaces;
         this.id = id;
         this.capacity = spaces.size();
     }
 
+    /**
+     * Stores a vehicle in the rental station.
+     *
+     * @param vehicle the vehicle to be stored
+     * @throws StationFullException if the rental station is full and cannot store the vehicle
+     */
     public void storeVehicle(Vehicle vehicle) throws StationFullException {
         boolean found = false;
         Iterator<ParkingSpace> it = this.spaces.iterator();
@@ -46,6 +55,7 @@ public class RentalStation implements Timer {
                 it.next().store(vehicle);
                 found = true;
             } catch (SpaceFullException e) {
+                // Ignore and continue to the next space
             }
         }
         if (found) {
@@ -56,10 +66,17 @@ public class RentalStation implements Timer {
                 vehicle.setState(State.STORED);
             }
             this.observer.vehicleStored(vehicle, this);
-        } else
+        } else {
             throw new StationFullException();
+        }
     }
 
+    /**
+     * Rents a vehicle from the rental station.
+     *
+     * @return The rented vehicle.
+     * @throws StationEmptyException if the rental station is empty and there are no available vehicles to rent.
+     */
     public Vehicle rentVehicle() throws StationEmptyException {
         for (ParkingSpace space : this.spaces) {
             if (!space.isEmpty() && space.getVehicle().isRentable()) {
@@ -77,6 +94,11 @@ public class RentalStation implements Timer {
         throw new StationEmptyException();
     }
 
+    /**
+     * Checks if the rental station is empty.
+     * 
+     * @return true if the rental station is empty, false otherwise.
+     */
     public boolean isEmpty() {
         for (ParkingSpace space : this.spaces) {
             if (!space.isEmpty() && space.getVehicle().isRentable())
@@ -85,6 +107,11 @@ public class RentalStation implements Timer {
         return true;
     }
 
+    /**
+     * Checks if the rental station is full.
+     * 
+     * @return true if all parking spaces are occupied, false otherwise.
+     */
     public boolean isFull() {
         for (ParkingSpace space : this.spaces) {
             if (space.isEmpty())
@@ -93,10 +120,19 @@ public class RentalStation implements Timer {
         return true;
     }
 
+    /**
+     * Attaches an observer to the rental station.
+     * 
+     * @param observer the observer to attach
+     */
     public void attach(Observer observer) {
         this.observer = observer;
     }
 
+    /**
+     * Performs a tick of the rental station, checking if there is only one vehicle present and if it has been stolen.
+     * If there is only one vehicle present for a certain amount of time, the vehicle is marked as stolen and the observer is notified.
+     */
     public void tick() {
         int cpt = 0;
         ParkingSpace vehicleSpace = null;

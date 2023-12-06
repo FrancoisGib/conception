@@ -13,6 +13,12 @@ import project.stations.RentalStation;
 import project.stations.factories.BikeStationFactory;
 import project.stations.factories.StationFactory;
 
+/**
+ * The Simulation class represents a simulation of a rental system.
+ * It simulates the behavior of clients renting vehicles from rental stations,
+ * the control center managing the rental process, and repairers maintaining the vehicles.
+ */
+
 public class Simulation {
     protected static final int RENT_RATIO = 10;
 
@@ -40,6 +46,10 @@ public class Simulation {
 
     protected int loop = 0;
 
+    /**
+     * Represents a simulation of a bike rental system.
+     * The simulation initializes clients, stations, repairers, and a control center.
+     */
     public Simulation() {
         for (int i = 0; i < NUMBER_OF_CLIENTS; i++)
             this.clients.add(new Client(i,
@@ -56,6 +66,10 @@ public class Simulation {
         this.controlCenter = ControlCenter.getInstance(this.stations, this.repairers);
     }
 
+    /**
+     * Starts the simulation by scheduling a timer task to run the loop method periodically.
+     * The simulation will run until the specified simulation time is reached.
+     */
     public void start() {
         Timer timer = new Timer();
         timer.schedule(new TimerTask() {
@@ -70,12 +84,21 @@ public class Simulation {
         }, 1000, 1000);
     }
 
+    /**
+     * Starts the simulation without using a timer.
+     * Executes the simulation loop for a fixed number of times.
+     */
     public void startWithoutTimer() {
         for (int j = 0; j < SIMULATION_TIME; j++) {
             this.loop();
         }
     }
 
+    /**
+     * Executes the main simulation loop.
+     * This method iterates over the clients, performs rental operations,
+     * updates the clients' status, and ticks the control center and repairers.
+     */
     protected void loop() {
         int i = 0;
         Iterator<Client> it = this.clients.iterator();
