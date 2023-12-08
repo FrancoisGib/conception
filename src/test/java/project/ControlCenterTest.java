@@ -231,6 +231,9 @@ public class ControlCenterTest {
             vehicleRepairedCalled = true;
         }
 
+        public void noRepairerAvailable() {
+        }
+
         public void displayRedistribution(List<RentalStation> stations) {
         }
 
