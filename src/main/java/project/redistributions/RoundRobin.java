@@ -9,7 +9,8 @@ import project.stations.spaces.SpaceFullException;
 import project.vehicles.Vehicle;
 
 /**
- * The RoundRobin class represents a redistribution strategy that follows the round-robin algorithm.
+ * The RoundRobin class represents a redistribution strategy that follows the
+ * round-robin algorithm.
  * It extends the Redistribution class and implements the redistribute method.
  */
 public class RoundRobin extends Redistribution {

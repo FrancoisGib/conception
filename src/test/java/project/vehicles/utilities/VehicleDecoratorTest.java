@@ -50,7 +50,7 @@ public abstract class VehicleDecoratorTest {
 
     @Test
     public void vehicleAcceptCalledWhenAcceptVisitor() {
-        MockVehicle mockVehicle = new MockVehicle(0);
+        MockVehicle mockVehicle = new MockVehicle();
         VehicleDecorator newDecorator = new MockVehicleDecorator(mockVehicle);
         assertFalse(mockVehicle.acceptCalled);
         newDecorator.accept(new MockWorker());
@@ -59,7 +59,7 @@ public abstract class VehicleDecoratorTest {
 
     @Test
     public void getDescriptionWithVehicleDescription() {
-        MockVehicle mockVehicle = new MockVehicle(0);
+        MockVehicle mockVehicle = new MockVehicle();
         VehicleDecorator newDecorator = new MockVehicleDecorator(mockVehicle);
         assertFalse(mockVehicle.getDescriptionCalled);
         assertEquals(mockVehicle.getDescription() + SEPARATOR + MockVehicleDecorator.DESCRIPTION, newDecorator.getDescription());

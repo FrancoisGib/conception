@@ -1,6 +1,7 @@
 package project.redistributions;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -8,7 +9,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -19,7 +19,6 @@ import project.stations.RentalStation;
 import project.stations.StationEmptyException;
 import project.stations.StationFullException;
 import project.stations.spaces.ParkingSpace;
-import project.stations.spaces.SpaceEmptyException;
 import project.stations.spaces.SpaceFullException;
 import project.vehicles.Vehicle;
 
@@ -41,7 +40,7 @@ public abstract class RedistributionTest {
     @Test
     public void getFirstFreeSlotWhenStationFull() throws StationEmptyException, StationFullException {
         for (int i = 0; i < STATIONS_CAPACITY; i++)
-            station.storeVehicle(new MockVehicle(i));
+            station.storeVehicle(new MockVehicle());
         assertThrows(StationEmptyException.class, () -> redistribution.getFirstFreeSpace(station));
     }
 
@@ -60,7 +59,7 @@ public abstract class RedistributionTest {
 
     @Test
     public void getAllVehiclesWhenStationsNotEmpty() throws StationFullException {
-        Vehicle vehicle = new MockVehicle(0);
+        Vehicle vehicle = new MockVehicle();
         station.storeVehicle(vehicle);
         List<Vehicle> vehicles = redistribution.getAllVehicles(Arrays.asList(station));
         assertEquals(1, vehicles.size());
@@ -73,8 +72,8 @@ public abstract class RedistributionTest {
         List<Vehicle> vehiclesBeforeRedistribution = new ArrayList<>();
         List<RentalStation> stations = Arrays.asList(station, anotherStation);
         for (int i = 0; i < STATIONS_CAPACITY; i++) {
-            Vehicle vehicle1 = new MockVehicle(i);
-            Vehicle vehicle2 = new MockVehicle(i + STATIONS_CAPACITY);
+            Vehicle vehicle1 = new MockVehicle();
+            Vehicle vehicle2 = new MockVehicle();
             vehiclesBeforeRedistribution.addAll(Arrays.asList(vehicle1, vehicle2));
             station.storeVehicle(vehicle1);
             anotherStation.storeVehicle(vehicle2);
@@ -88,42 +87,19 @@ public abstract class RedistributionTest {
 
     @Test
     public void checkStoreCallInParkingSpacesWhenRedistribution() throws SpaceFullException {
-        List<MockParkingSpace> spaces = station.getSpaces().stream().map((space) -> (MockParkingSpace)space).collect(Collectors.toList());
-        for (MockParkingSpace space : spaces) {
-            space.store(new MockVehicle(0));
-            space.storeCalled = false;
+        for (ParkingSpace space : station.getSpaces()) {
+            space.store(new MockVehicle());
+            assertNotNull(space.getVehicle());
         }
         redistribution.redistribute(Arrays.asList(station));
-        for (MockParkingSpace space : spaces)
-            assertTrue(space.storeCalled);
-    }
-
-    protected List<ParkingSpace> initSpaces() {
-        List<ParkingSpace> spaces = new ArrayList<>();
-        for (int i = 0; i < STATIONS_CAPACITY; i++)
-            spaces.add(new MockParkingSpace());
-        return spaces;
+        for (ParkingSpace space : station.getSpaces())
+            assertNotNull(space.getVehicle());
     }
 
     protected class MockRentalStation extends RentalStation {
         public MockRentalStation() {
-            super(1, initSpaces());
+            super(1, STATIONS_CAPACITY);
             this.attach(new MockObserver());
-        }
-    }
-
-    protected class MockParkingSpace extends ParkingSpace {
-        public boolean storeCalled = false;
-        public boolean removeCalled = false;
-
-        public void store(Vehicle vehicle) throws SpaceFullException {
-            storeCalled = true;
-            super.store(vehicle);
-        }
-
-        public Vehicle remove() throws SpaceEmptyException {
-            removeCalled = true;
-            return super.remove();
         }
     }
 }

@@ -16,7 +16,8 @@ public class Thief extends Client {
 
     /**
      * This method is called on each tick of the simulation.
-     * It is empty in the Thief class, as the thief does not have any specific behavior.
+     * It is empty in the Thief class, as the thief does not have any specific
+     * behavior.
      */
     @Override
     public void tick() {

@@ -17,7 +17,6 @@ import project.vehicles.Vehicle;
 public class RentalStation implements Timer {
     public static final int MAX_CAPACITY = 20;
     public static final int MIN_CAPACITY = 10;
-    public static final int TIME_BEFORE_VEHICLE_STOLLEN = Simulation.TIME_BEFORE_VEHICLE_STOLLEN;
 
     private int onlyOneVehicleCount = 0;
 
@@ -35,10 +34,11 @@ public class RentalStation implements Timer {
     /**
      * Represents a rental station for parking spaces.
      */
-    public RentalStation(int id, List<ParkingSpace> spaces) {
-        this.spaces = spaces;
+    public RentalStation(int id, int capacity) {
         this.id = id;
-        this.capacity = spaces.size();
+        this.capacity = capacity;
+        for (int i = 0; i < capacity; i++)
+            this.spaces.add(new ParkingSpace());
     }
 
     /**
@@ -65,7 +65,8 @@ public class RentalStation implements Timer {
             } else {
                 vehicle.setState(State.STORED);
             }
-            this.observer.vehicleStored(vehicle, this);
+            if (this.observer != null)
+                this.observer.vehicleStored(vehicle, this);
         } else {
             throw new StationFullException();
         }
@@ -85,7 +86,8 @@ public class RentalStation implements Timer {
                     int newVehicleLives = vehicle.getLives() - 1;
                     vehicle.setLives(newVehicleLives);
                     vehicle.setState(State.RENTED);
-                    this.observer.vehicleRented(vehicle, this);
+                    if (this.observer != null)
+                        this.observer.vehicleRented(vehicle, this);
                     return vehicle;
                 } catch (SpaceEmptyException e) {
                 }
@@ -144,7 +146,7 @@ public class RentalStation implements Timer {
         }
         if (cpt == 1) {
             this.onlyOneVehicleCount++;
-            if (this.onlyOneVehicleCount == TIME_BEFORE_VEHICLE_STOLLEN) {
+            if (this.onlyOneVehicleCount == Simulation.TIME_BEFORE_VEHICLE_STOLEN) {
                 try {
                     Vehicle stolenVehicle = vehicleSpace.remove();
                     stolenVehicle.setState(State.STOLEN);

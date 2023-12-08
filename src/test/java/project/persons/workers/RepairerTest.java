@@ -1,4 +1,4 @@
-package project.workers;
+package project.persons.workers;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -8,10 +8,10 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 
 import project.mocks.MockBike;
+import project.mocks.MockRepairer;
 import project.mocks.MockScooter;
-import project.persons.workers.Repairer;
-import project.persons.workers.Worker;
 import project.vehicles.Bike;
+import project.vehicles.Scooter;
 import project.vehicles.State;
 
 public class RepairerTest extends WorkerTest {
@@ -64,4 +64,23 @@ public class RepairerTest extends WorkerTest {
         assertNotEquals(State.STORED, bike.getState());
         assertFalse(observer.vehicleRepairedCalled);
     }
+
+    @Test
+    public void visitBikeCall() {
+        MockRepairer repairer = new MockRepairer();
+        Bike bike = new MockBike();
+        assertFalse(repairer.acceptBikeCalled);
+        bike.accept(repairer);
+        assertTrue(repairer.acceptBikeCalled);
+    }
+
+    @Test
+    public void visitScooterCall() {
+        MockRepairer repairer = new MockRepairer();
+        Scooter scooter = new MockScooter();
+        assertFalse(repairer.acceptScooterCalled);
+        scooter.accept(repairer);
+        assertTrue(repairer.acceptScooterCalled);
+    }
 }
+

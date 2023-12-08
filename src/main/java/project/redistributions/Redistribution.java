@@ -7,10 +7,12 @@ import project.stations.RentalStation;
 import project.stations.StationEmptyException;
 import project.stations.spaces.ParkingSpace;
 import project.stations.spaces.SpaceEmptyException;
+import project.vehicles.State;
 import project.vehicles.Vehicle;
 
 /**
- * The abstract class Redistribution represents a strategy for redistributing vehicles among rental stations.
+ * The abstract class Redistribution represents a strategy for redistributing
+ * vehicles among rental stations.
  * Subclasses of Redistribution must implement the redistribute method.
  */
 public abstract class Redistribution {
@@ -32,9 +34,12 @@ public abstract class Redistribution {
         for (RentalStation station : stations) {
             station.getSpaces().forEach((space) -> {
                 try {
-                    vehicles.add(space.remove());
+                    if (!space.isEmpty()) {
+                        State vehicleState = space.getVehicle().getState();
+                        if (!(vehicleState == State.REPARATION || vehicleState == State.OUT_OF_SERVICE))
+                            vehicles.add(space.remove());
+                    }
                 } catch (SpaceEmptyException e) {
-                    // Ignore empty spaces
                 }
             });
         }

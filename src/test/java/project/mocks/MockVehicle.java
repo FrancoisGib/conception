@@ -10,8 +10,8 @@ public class MockVehicle extends Vehicle {
     public boolean setLivesCalled = false;
     public boolean getDescriptionCalled = false;
 
-    public MockVehicle(int id) {
-        super(id);
+    public MockVehicle() {
+        super(0);
         this.description = DESCRIPTION;
         this.lives = 1;
     }

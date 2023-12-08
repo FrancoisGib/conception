@@ -21,7 +21,7 @@ public class ParkingSpaceTest {
     @BeforeEach
     public void init() {
         this.space = new ParkingSpace();
-        this.vehicle = new MockVehicle(0);
+        this.vehicle = new MockVehicle();
     }
 
     @Test

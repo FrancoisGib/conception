@@ -10,9 +10,9 @@ import project.vehicles.Vehicle;
 
 public abstract class VehicleFactoryTest {
 
-    protected VehicleFactory factory;
+    protected VehicleFactory<? extends Vehicle> factory;
 
-    protected abstract VehicleFactory createFactory();
+    protected abstract VehicleFactory<? extends Vehicle> createFactory();
     
     @BeforeEach
     public void init() {
@@ -21,8 +21,16 @@ public abstract class VehicleFactoryTest {
 
     @Test
     public void createVehicleWorking() {
-        Vehicle vehicle = factory.createVehicle(0);
+        Vehicle vehicle = factory.createVehicle();
         assertNotNull(vehicle);
         assertEquals(0, vehicle.getId());
+    }
+    
+    @Test
+    public void cptIncrementation() {
+        Vehicle firstVehicle = factory.createVehicle();
+        assertEquals(0, firstVehicle.getId());
+        Vehicle secondVehicle = factory.createVehicle();
+        assertEquals(1, secondVehicle.getId());
     }
 }

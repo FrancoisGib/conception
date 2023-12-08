@@ -5,12 +5,11 @@ import project.vehicles.Vehicle;
 /**
  * The VehicleFactory interface represents a factory for creating vehicles.
  */
-public interface VehicleFactory {
+public interface VehicleFactory<T extends Vehicle> {
     /**
-     * Creates a vehicle with the specified ID.
+     * Creates a vehicle.
      *
-     * @param id the ID of the vehicle
      * @return the created vehicle
      */
-    public Vehicle createVehicle(int id);
+    public Vehicle createVehicle();
 }

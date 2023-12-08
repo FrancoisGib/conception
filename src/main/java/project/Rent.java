@@ -13,7 +13,6 @@ public class Rent {
 
     private Observer observer;
 
-    @Getter
     private int time;
 
     /**
@@ -33,10 +32,10 @@ public class Rent {
      * the observer's vehicleStolen method is called.
      */
     public void increment() {
-        if (this.time == Simulation.TIME_BEFORE_VEHICLE_STOLLEN) {
+        this.time++;
+        if (this.time == Simulation.TIME_BEFORE_VEHICLE_STOLEN) {
             this.observer.vehicleStolen(vehicle);
         }
-        this.time++;
     }
 
     /**

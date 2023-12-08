@@ -1,4 +1,4 @@
-package project.workers;
+package project.persons.workers;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -8,7 +8,6 @@ import org.junit.jupiter.api.Test;
 
 import project.mocks.MockObserver;
 import project.mocks.MockVehicle;
-import project.persons.workers.Worker;
 import project.vehicles.Bike;
 import project.vehicles.Scooter;
 import project.vehicles.Vehicle;
@@ -35,7 +34,7 @@ public abstract class WorkerTest {
     @Test
     public void isOccupiedWhenTrue() {
         MockWorker mockWorker = new MockWorker();
-        mockWorker.setVehicle(new MockVehicle(0));
+        mockWorker.setVehicle(new MockVehicle());
         assertTrue(mockWorker.isOccupied());
     }
 

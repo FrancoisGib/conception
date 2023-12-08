@@ -13,7 +13,8 @@ public class Repairer extends Worker {
 
     /**
      * Visits a Bike object and sets its state to REPARATION.
-     * Updates the worker's vehicle, reparation time, and initial vehicle lives accordingly.
+     * Updates the worker's vehicle, reparation time, and initial vehicle lives
+     * accordingly.
      * 
      * @param bike The Bike object to be visited.
      */
@@ -26,7 +27,8 @@ public class Repairer extends Worker {
 
     /**
      * Visits a Scooter object and sets its state to REPARATION.
-     * Updates the worker's vehicle, reparation time, and initial vehicle lives accordingly.
+     * Updates the worker's vehicle, reparation time, and initial vehicle lives
+     * accordingly.
      * 
      * @param scooter The Scooter object to be visited.
      */
@@ -39,9 +41,12 @@ public class Repairer extends Worker {
 
     /**
      * Performs a tick of the repair process.
-     * If a vehicle is being repaired, increments the counter and checks if the reparation time has been reached.
-     * If the reparation time has been reached, resets the counter, restores the vehicle's initial lives,
-     * sets the vehicle's state to STORED, notifies the observer about the repaired vehicle,
+     * If a vehicle is being repaired, increments the counter and checks if the
+     * reparation time has been reached.
+     * If the reparation time has been reached, resets the counter, restores the
+     * vehicle's initial lives,
+     * sets the vehicle's state to STORED, notifies the observer about the repaired
+     * vehicle,
      * and clears the worker's vehicle reference.
      */
     public void tick() {

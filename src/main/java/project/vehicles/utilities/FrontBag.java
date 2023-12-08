@@ -1,6 +1,6 @@
 package project.vehicles.utilities;
 
-import project.vehicles.Scooter;
+import project.vehicles.Vehicle;
 
 /**
  * Represents a front bag for a scooter.
@@ -12,10 +12,10 @@ public class FrontBag extends VehicleDecorator {
     /**
      * Constructs a new FrontBag object.
      * 
-     * @param scooter the scooter to decorate with a front bag
+     * @param vehicle the vehicle to decorate with a front bag
      */
-    public FrontBag(Scooter scooter) {
-        super(scooter);
+    public FrontBag(Vehicle vehicle) {
+        super(vehicle);
         this.description = DESCRIPTION;
     }
 }

@@ -1,4 +1,4 @@
-package project.displayers;
+package project;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -11,20 +11,21 @@ import project.vehicles.Vehicle;
 
 public class Displayer {
 
-    
     /**
-     * Displays a message indicating that a vehicle has been rented from a rental station.
+     * Displays a message indicating that a vehicle has been rented from a rental
+     * station.
      *
      * @param vehicle The rented vehicle.
      * @param station The rental station from which the vehicle has been rented.
      */
-  
+
     public void vehicleRented(Vehicle vehicle, RentalStation station) {
         System.out.println("The vehicle " + vehicle.getId() + " has been rented from the station " + station.getId());
     }
 
     /**
-     * Displays a message indicating that a vehicle has been stored in a rental station.
+     * Displays a message indicating that a vehicle has been stored in a rental
+     * station.
      * 
      * @param vehicle The vehicle that has been stored.
      * @param station The rental station where the vehicle has been stored.
@@ -38,7 +39,7 @@ public class Displayer {
      *
      * @param vehicle the stolen vehicle
      */
-    public void vehicleStollen(Vehicle vehicle) {
+    public void vehicleStolen(Vehicle vehicle) {
         System.out.println("The vehicle " + vehicle.getId() + " has been stolen");
     }
 
@@ -67,6 +68,18 @@ public class Displayer {
      */
     public void vehicleRepaired(Vehicle vehicle) {
         System.out.println("The vehicle " + vehicle.getId() + " has been repaired, it is now available");
+    }
+
+    public void noRepairerAvailable() {
+        System.out.println("There's no repairer available, wait !");
+    }
+
+    public void stationFull(RentalStation station) {
+        System.out.println("The station " + station.getId() + " is full, come back later !");
+    }
+
+    public void stationEmpty(RentalStation station) {
+        System.out.println("The station " + station.getId() + " is empty, come back later !");
     }
 
     public static final String ANSI_RESET = "\u001B[0m";
@@ -141,9 +154,9 @@ public class Displayer {
                         res += " ❌ ";
                     else
                         res += " 🛑 ";
-                } 
-                else res += " ✅ ";
-                
+                } else
+                    res += " ✅ ";
+
             }
             System.out.println(res + "\n");
         }

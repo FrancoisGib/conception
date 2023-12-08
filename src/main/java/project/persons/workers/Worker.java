@@ -8,7 +8,8 @@ import project.vehicles.Vehicle;
 
 /**
  * The abstract class representing a worker.
- * A worker is responsible for performing tasks and can be associated with a vehicle.
+ * A worker is responsible for performing tasks and can be associated with a
+ * vehicle.
  * It implements the Timer interface to handle time-based operations.
  */
 public abstract class Worker implements Timer {
@@ -27,6 +28,7 @@ public abstract class Worker implements Timer {
 
     /**
      * Checks if the worker is currently occupied with a vehicle.
+     * 
      * @return true if the worker is occupied, false otherwise
      */
     public boolean isOccupied() {
@@ -35,6 +37,7 @@ public abstract class Worker implements Timer {
 
     /**
      * Attaches an observer to the worker.
+     * 
      * @param observer the observer to attach
      */
     public void attach(Observer observer) {
@@ -43,12 +46,14 @@ public abstract class Worker implements Timer {
 
     /**
      * Visits a bike and performs specific actions.
+     * 
      * @param bike the bike to visit
      */
     public abstract void visit(Bike bike);
 
     /**
      * Visits a scooter and performs specific actions.
+     * 
      * @param scooter the scooter to visit
      */
     public abstract void visit(Scooter scooter);
