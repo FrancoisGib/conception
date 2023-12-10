@@ -1,4 +1,4 @@
-## Projet
+## Projet Gibier François / Matton Hugo
 
 ### Commandes :
 Le projet a été réalisé avec Maven.
