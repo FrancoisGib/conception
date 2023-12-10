@@ -8,12 +8,25 @@ import project.vehicles.Vehicle;
  * It extends the Vehicle class and provides additional functionality to the decorated vehicle.
  */
 public abstract class VehicleDecorator extends Vehicle {
+
+    /**
+     * The separator used to separate the description of the decorated vehicle and the decorator's description.
+     */
     public static final String SEPARATOR = " / ";
 
+    /**
+     * The decorated vehicle.
+     */
     protected Vehicle vehicle;
 
+    /**
+     * The description of the decorator.
+     */
     protected String description;
 
+    /**
+     * The unique identifier for a vehicle.
+     */
     protected int id;
 
     /**

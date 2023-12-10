@@ -70,18 +70,32 @@ public class Displayer {
         System.out.println("The vehicle " + vehicle.getId() + " has been repaired, it is now available");
     }
 
+    /**
+     * Displays a message indicating that there is no repairer available.
+     */
     public void noRepairerAvailable() {
         System.out.println("There's no repairer available, wait !");
     }
 
+    /**
+     * Displays a message indicating that a rental station is full.
+     * 
+     * @param station the rental station that is full
+     */
     public void stationFull(RentalStation station) {
         System.out.println("The station " + station.getId() + " is full, come back later !");
     }
 
+    /**
+     * Displays a message indicating that a rental station is empty.
+     * 
+     * @param station the rental station that is empty
+     */
     public void stationEmpty(RentalStation station) {
         System.out.println("The station " + station.getId() + " is empty, come back later !");
     }
 
+    // The colors for printing
     public static final String ANSI_RESET = "\u001B[0m";
     public static final String ANSI_BLACK_BACKGROUND = "\u001B[40m";
     public static final String ANSI_RED_BACKGROUND = "\u001B[41m";
@@ -96,6 +110,10 @@ public class Displayer {
             ANSI_YELLOW_BACKGROUND, ANSI_BLUE_BACKGROUND, ANSI_PURPLE_BACKGROUND, ANSI_CYAN_BACKGROUND,
             ANSI_WHITE_BACKGROUND);
 
+    
+    /**
+     * A HashMap that maps Vehicle objects to their corresponding color.
+     */
     private HashMap<Vehicle, String> vehiclesColor = new HashMap<Vehicle, String>();
 
     /**

@@ -14,25 +14,54 @@ import project.stations.spaces.SpaceFullException;
 import project.vehicles.State;
 import project.vehicles.Vehicle;
 
+/**
+ * Represents a rental station in the system.
+ */
 public class RentalStation implements Timer {
+    
+    /**
+     * The maximum capacity of a rental station.
+     */
     public static final int MAX_CAPACITY = 20;
+
+    /**
+     * The minimum capacity of a rental station.
+     */
     public static final int MIN_CAPACITY = 10;
 
+    /**
+     * The number of loops since there is only one vehicle present in the rental station.
+     */
     private int onlyOneVehicleCount = 0;
 
     @Getter
+    /**
+     * The unique identifier for a rental station.
+     */
     private int id;
 
     @Getter
+    /**
+     * The list of parking spaces in the rental station.
+     */
     private List<ParkingSpace> spaces = new ArrayList<>();
 
+    /**
+     * The observer attached to the rental station.
+     */
     private Observer observer;
 
     @Getter
+    /**
+     * The capacity of the rental station.
+     */
     private int capacity;
 
     /**
-     * Represents a rental station for parking spaces.
+     * Constructs a new RentalStation object with the specified ID and capacity.
+     *
+     * @param id       the ID of the rental station
+     * @param capacity the capacity of the rental station
      */
     public RentalStation(int id, int capacity) {
         this.id = id;

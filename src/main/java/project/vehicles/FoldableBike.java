@@ -7,6 +7,11 @@ package project.vehicles;
 public class FoldableBike extends Bike {
     public static final String DESCRIPTION = "Foldable Bike";
 
+    /**
+     * Constructs a FoldableBike object with the specified unique identifier.
+     *
+     * @param id the unique identifier for the foldable bike
+     */
     public FoldableBike(int id) {
         super(id);
         this.description = DESCRIPTION;

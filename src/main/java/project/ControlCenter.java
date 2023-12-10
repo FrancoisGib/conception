@@ -20,20 +20,45 @@ import project.vehicles.Vehicle;
  * It implements the Observer and Timer interfaces.
  */
 public class ControlCenter implements Observer, Timer {
+    /**
+     * The singleton instance of the ControlCenter class.
+     */
     private static ControlCenter instance;
 
+
+    /**
+     * The list of rental stations managed by the control center.
+     */
     private List<RentalStation> stations;
 
+    /**
+     * The list of rented vehicles.
+     */
     private List<Rent> rentedVehicles = new ArrayList<>();
 
+    /**
+     * The list of repairers managed by the control center.
+     */
     private List<Repairer> repairers;
 
+    /**
+     * The redistribution strategy used by the control center.
+     */
     private Redistribution redistribution = new RoundRobin();
 
+    /**
+     * The displayer used by the control center.
+     */
     private Displayer displayer = new Displayer();
 
+    /**
+     * The counter used to determine when to redistribute the vehicles.
+     */
     private Map<RentalStation, Integer> redistributionCounter = new HashMap<>();
 
+    /**
+     * The number of ticks before the redistribution process is triggered.
+     */
     private static final int TICK_BEFORE_REDISTRIBUTION = 3;
 
     /**

@@ -5,19 +5,31 @@ import lombok.Setter;
 import project.persons.workers.Worker;
 
 /**
- * The abstract base class for all vehicles.
+ * The abstract base class to represent vehicles.
  */
 public abstract class Vehicle {
     @Getter
+    /**
+     * The unique identifier for a vehicle.
+     */
     protected int id;
 
     @Getter
+    /**
+     * The description of the vehicle.
+     */
     protected String description;
 
     @Getter @Setter
+    /**
+     * The number of lives of the vehicle.
+     */
     protected int lives;
 
     @Getter @Setter
+    /**
+     * The state of the vehicle.
+     */
     protected State state;
 
     /**

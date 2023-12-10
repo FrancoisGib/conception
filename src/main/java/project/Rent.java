@@ -9,10 +9,19 @@ import project.vehicles.Vehicle;
  */
 public class Rent {
     @Getter
+    /**
+     * The vehicle that is being rented.
+     */
     private Vehicle vehicle;
 
+    /**
+     * The observer attached to the rental.
+     */
     private Observer observer;
 
+    /**
+     * Represents the time duration of a rental.
+     */
     private int time;
 
     /**
