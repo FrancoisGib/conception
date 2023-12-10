@@ -9,6 +9,10 @@ import project.stations.spaces.ParkingSpace;
 import project.vehicles.State;
 import project.vehicles.Vehicle;
 
+/**
+ * The Displayer class is used to display messages in the console.
+ * It is also used to display the redistribution of vehicles in rental stations.
+ */
 public class Displayer {
 
     /**
@@ -18,7 +22,6 @@ public class Displayer {
      * @param vehicle The rented vehicle.
      * @param station The rental station from which the vehicle has been rented.
      */
-
     public void vehicleRented(Vehicle vehicle, RentalStation station) {
         System.out.println("The vehicle " + vehicle.getId() + " has been rented from the station " + station.getId());
     }
