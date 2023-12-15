@@ -29,6 +29,11 @@ make mutation
 ```
 et aller dans le dossier "/target/pit-reports/"
 
+Pour générer la documentation :
+```bash
+mvn javadoc:javadoc
+```
+et aller dans le dossier "/target/site/apidocs/"
 
 ### Réalisation du projet
 

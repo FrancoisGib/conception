@@ -8,7 +8,7 @@ import project.vehicles.Vehicle;
  */
 public class ParkingSpace {
     @Getter
-    Vehicle vehicle;
+    private Vehicle vehicle;
 
     /**
      * Stores a vehicle in the parking space.
