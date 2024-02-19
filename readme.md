@@ -23,7 +23,7 @@ et pour executer le programme instantanément :
 make runInstantly
 ```
 
-Nous avons utilisé la méthode du mutation testing, pour accéder aux résultats de ces mutations :
+J'ai utilisé la méthode du mutation testing, pour accéder aux résultats de ces mutations :
 ```bash
 make mutation
 ```
@@ -76,8 +76,6 @@ Observer : Le control center observe les stations afin d'être notifié quand il
 ![](./UMLs/Observer.jpg "Observer")
 
 ### Précisions :
-Pour ce qui est de la simulation, nous n'avons pas développer les tests car nous avons jugé qu'elle était en dehors du projet et qu'elle permet juste de voir le fonctionnement et la logique derrière. Les tests du displayer n'ont pas été développés avec les mutations car on a juste des appels directement de ses fonctions qui sont juste des affichage dans la console. Toutes les autres classes ont été testées.
+Pour ce qui est de la simulation, je n'ai pas développé les tests car j'ai jugé qu'elle était en dehors du projet et qu'elle permettait juste de voir le fonctionnement et la logique derrière. Les tests du displayer n'ont pas été développés avec les mutations car on a juste des appels directement de ses fonctions qui sont juste des affichages dans la console. Toutes les autres classes ont été testées.
 
 Pour pouvoir tester le singleton, la méthode de la Reflection à été utilisée car tout ses attributs étaient privés.
-
-Nous avons essayé de respecter le plus possible les différents principes de conception (SOLID, DRY, KISS...).
