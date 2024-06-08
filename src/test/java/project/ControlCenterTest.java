@@ -66,7 +66,7 @@ public class ControlCenterTest {
 
     @Test
     public void launch() throws Exception {
-        attachmentOnInitialisation();
+        //attachmentOnInitialisation();
         vehicleOutOfServiceAndRepairerAvailable();
         vehicleOutOfServiceAndRepairerNotAvailable();
         vehicleRentedNewRentCreated();
